@@ -45,6 +45,7 @@
             <div class="col-md-4" id="search">
                 <form method="POST">
                     <input class="form-control" name="txtKeyword" type="text" id="txtKeyword" placeholder="กรุณากรอกรหัสสมาชิก" value="<?php echo $Key_id; ?>">
+                    <!-- ปักไว้ กลับมาแก้ไขเป็นค้นหา username -->
                     <button type="submit" value="ค้นหา" class="btn btn-info">ค้นหา</button>
                 </form>
             </div>
@@ -54,9 +55,10 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
+            <div class="table-wrapper-scroll-y me-custom-scrollbar">
                 <table class="table table-striped table-hover">
                     <thead>
-                        <th scope="col" width="5%">รหัสสมาชิก</th>
+                        <!-- <th scope="col" width="5%">รหัสสมาชิก</th> -->
                         <th scope="col" width="5%">โปรไฟล์</th>
                         <th scope="col" width="7%">ชื่อผู้ใช้งาน</th>
                         <th scope="col" width="7%">ชื่อ</th>
@@ -75,7 +77,7 @@
                             while ($row = mysqli_fetch_array($query)) {
                             ?>
                                 <tr>
-                                    <td data-label="รหัสสมาชิก"><?php echo $row['cus_id']; ?></td>
+                                    <!-- <td data-label="รหัสสมาชิก"><?php echo $row['cus_id']; ?></td> -->
                                     <td data-label="โปรไฟล์">
                                         <img src="<?php echo $row["file"] ?>" class="rounded-circle" />
                                     </td>
@@ -98,6 +100,7 @@
                             ?>
                         </tbody>
                 </table>
+            </div>
             </div>
             <div class="col-md-1"></div>
         </div>

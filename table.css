@@ -21,3 +21,8 @@ table{
     overflow: auto;
 }
 
+.me-custom-scrollbar {
+    position: relative;
+    height: 550px;
+    overflow: auto;
+}
