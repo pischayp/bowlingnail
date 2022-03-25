@@ -164,12 +164,12 @@
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table">
                         <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">ชื่อช่างทำเล็บ</th>
-                            <th scope="col">วันที่เริ่มและสิ้นสุดการลา</th>
-                            <th scope="col">การลางาน</th>
-                            <th scope="col">หมายเหตุการลา</th>
-                            <th scope="col">สถานะการทำงาน</th>
+                            <th scope="col" width="5%">ลำดับ</th>
+                            <th scope="col" width="10%">ชื่อช่างทำเล็บ</th>
+                            <th scope="col" width="15%">วันที่เริ่มและสิ้นสุดการลา</th>
+                            <th scope="col" width="10%">การลางาน</th>
+                            <th scope="col" width="20%">หมายเหตุการลา</th>
+                            <th scope="col" width="15%">สถานะการทำงาน</th>
                         </tr>
                     </thead>
                     <?php
