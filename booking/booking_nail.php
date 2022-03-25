@@ -103,11 +103,7 @@
                         $_SESSION['book_id'] = $rowselect['book_id'];
                         $sqldetail = "SELECT * FROM book_nail_detail INNER join service_item on service_item.ST_ID = book_nail_detail.ST_ID 
                                         INNER join nail_set on service_item.ns_id = nail_set.ns_id 
-<<<<<<< HEAD
                                         WHERE  book_nail_detail.book_id = $book_id";
-=======
-                                        WHERE  book_id = $book_id";
->>>>>>> 6d5d676f49978607ceb2463506ddfeaf62b21f8e
                         $resultdetail = mysqli_query($conn, $sqldetail);
 
                         while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
