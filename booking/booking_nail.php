@@ -103,7 +103,7 @@
                         $_SESSION['book_id'] = $rowselect['book_id'];
                         $sqldetail = "SELECT * FROM book_nail_detail INNER join service_item on service_item.ST_ID = book_nail_detail.ST_ID 
                                         INNER join nail_set on service_item.ns_id = nail_set.ns_id 
-                                        WHERE service_item.S_ID != 6 and service_item.S_ID != 7 and book_id = $book_id";
+                                        WHERE  book_nail_detail.book_id = $book_id";
                         $resultdetail = mysqli_query($conn, $sqldetail);
 
                         while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
@@ -124,6 +124,7 @@
                             </tr>
                     <?php
                         }
+                        
                     }
                     ?>
                 </tbody>
