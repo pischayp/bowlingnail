@@ -111,13 +111,13 @@
                     <table class="table table-striped table-hover" style="text-align:center;  width:100%; background-color:white;">
                         <thead>
                             <th width="10%">รูปภาพ</th>
-                            <th width="10%">ชื่อลายเล็บ</th>
+                            <th width="15%">ชื่อบริการ</th>
                             <!-- <th width="20%">รายละเอียด</th> -->
-                            <th width="10%">รูปแบบ</th>
-                            <th width="10%">วันที่จอง</th>
-                            <th width="10%">เวลาที่จอง</th>
-                            <th width="10%">ช่างทำเล็บ</th>
-                            <th width="10%">ราคา</th>
+                            <th width="15%">รูปแบบ</th>
+                            <th width="15%">วันที่จอง</th>
+                            <th width="15%">เวลาที่จอง</th>
+                            <th width="15%">ช่างทำเล็บ</th>
+                            <th width="5%">ราคา</th>
                         </thead>
                         <tbody>
                             <?php
