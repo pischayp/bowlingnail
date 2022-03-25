@@ -67,24 +67,24 @@
     </div>
         <div class="row" id="cart_booking">
             <div class="col-1"></div>
-            <div class="col-lg-5" id="cartbook">
-                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; ตะกร้าลายเล็บ
+            <div class="col-lg-10" id="cartbook">
+                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; ตะกร้าสินค้า 
                 <hr>
             </div>
-            <div class="col-lg-5" id="cartbook">
+            <!-- <div class="col-lg-5" id="cartbook">
                 <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; ตะกร้าสปามือและเท้า
                 <hr>
-            </div>
+            </div> -->
             <div class="col-1"></div>
         </div><br>
 
         <div class="row">
             <div class="col-1"></div>
-            <div class="col-lg-5">
+            <div class="col-lg-10">
             <table class="table table-striped table-hover" id="table_booking">
                 <thead>
                     <th width="10%">รูปภาพ </th>
-                    <th width="10%">ชื่อลาย</th>
+                    <th width="10%">ชื่อบริการ</th>
                     <th width="10%">รายละเอียด</th>
                     <th width="10%">รูปแบบ</th>
                     <th width="10%">ราคา</th>
@@ -103,7 +103,11 @@
                         $_SESSION['book_id'] = $rowselect['book_id'];
                         $sqldetail = "SELECT * FROM book_nail_detail INNER join service_item on service_item.ST_ID = book_nail_detail.ST_ID 
                                         INNER join nail_set on service_item.ns_id = nail_set.ns_id 
+<<<<<<< HEAD
                                         WHERE  book_nail_detail.book_id = $book_id";
+=======
+                                        WHERE  book_id = $book_id";
+>>>>>>> 6d5d676f49978607ceb2463506ddfeaf62b21f8e
                         $resultdetail = mysqli_query($conn, $sqldetail);
 
                         while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
@@ -134,11 +138,10 @@
             <br><br>
             </div>
             
-            <div class="col-lg-5">
+            <!-- <div class="col-lg-5">
             <table class="table table-striped table-hover" id="table_booking">
                 <thead>
-                    <!-- อาจจะใส่รูป -->
-                    <!-- <th></th>  -->
+                    
 
                     <th width="10%">รูปภาพ </th>
                     <th width="10%">ชื่อลาย</th>
@@ -186,7 +189,7 @@
                 <br><br>
             </table>
             <br><br>
-            </div>
+            </div> -->
             <div class="col-1"></div>
         </div>
 
