@@ -84,7 +84,7 @@
             <table class="table table-striped table-hover" id="table_booking">
                 <thead>
                     <th width="10%">รูปภาพ </th>
-                    <th width="10%">ชื่อลาย</th>
+                    <th width="10%">ชื่อบริการ</th>
                     <th width="10%">รายละเอียด</th>
                     <th width="10%">รูปแบบ</th>
                     <th width="10%">ราคา</th>
