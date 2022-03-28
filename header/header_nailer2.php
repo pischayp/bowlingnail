@@ -217,14 +217,14 @@
                             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="one_star_progress"></div>
                         </div>
                         </p><br>
-                        <span>
+                        <!-- <span>
                             <a href="#review2<?php echo $row['bd_id']?>" data-toggle="modal" class="btn btn-outline-warning">
-                                <!-- <button type="button" name="add_review" id="add_review" > -->
+                                <button type="button" name="add_review" id="add_review" >
                                 <i class="bi bi-star-fill"></i> ให้คะแนน (Reivew)
-                            <!-- </button> -->
+                            </button>
                             </a>
                             <?php include('../model/modal_review.php'); ?>
-                        </span><br>
+                        </span><br> -->
                     </div>
                 </div><br>
             </div>

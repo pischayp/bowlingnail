@@ -74,8 +74,7 @@
                         JOIN nailer on book_nail_detail.nailer_id = nailer.nailer_id 
                         JOIN nail_set on nail_set.ns_id = service_item.ns_id 
                         JOIN nail_type on nail_type.nt_id = service_item.nt_id 
-                        where customer.cus_id='$cus_id' ";
-                            
+                        where customer.cus_id='$cus_id' ";                         
                            
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($result)) { 
@@ -116,6 +115,7 @@
             </div>
             <div class="col-md-1"></div>
         </div><br><br>
+
     
 </body>
 </html>
