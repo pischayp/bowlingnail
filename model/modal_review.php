@@ -9,10 +9,7 @@
             </div>
             <div class="modal-body">
                 <?php
-                    $review = mysqli_query($conn, "select * from book_nail_detail 
-                     join booking on booking.book_id = book_nail_detail.book_id
-                     join customer on customer.cus_id = booking.cus_id
-                    where bd_id='" . $row['bd_id'] . "'");
+                    $review = mysqli_query($conn, "select * from book_nail_detail where bd_id='" . $row['bd_id'] . "'");
                     $row = mysqli_fetch_array($review);
                 ?>
                 
@@ -50,10 +47,7 @@
             </div>
             <div class="modal-body">
                 <?php
-                    $review2 = mysqli_query($conn, "select * from book_nail_detail 
-                     join booking on booking.book_id = book_nail_detail.book_id
-                     join customer on customer.cus_id = booking.cus_id
-                    where bd_id='" . $row['bd_id'] . "'");
+                    $review2 = mysqli_query($conn, "select * from book_nail_detail where bd_id='" . $row['bd_id'] . "'");
                     $row = mysqli_fetch_array($review2);
                 ?>
                 
