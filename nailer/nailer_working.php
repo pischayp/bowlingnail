@@ -38,15 +38,15 @@
 
 
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
+            <div class="col-2"></div>
+            <div class="col-8">
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table" width="100%">
                         <tr>
                             <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองลูกค้า</th>
                             <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
                             <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวม</th>
-                            <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> สถานะการทำงาน</th>
+                            <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> สถานะการทำงาน</th>
                         </tr>
                     </thead>
 
@@ -84,17 +84,18 @@
                                     $resultdetail = mysqli_query($conn, $sqldetail);
                                     while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                         
-                                        <img src="<?php echo $rowdetail['file']; ?>" width="70px"><br>
-                                        <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br>
+                                        <img src="<?php echo $rowdetail['file']; ?>" width="70px">
+                                        <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br><br>
                                         <!-- <b> รายละเอียด : </b><?php echo $rowdetail['detail']; ?><br> -->
                                     <?php } ?>
                                 </td>
 
                                 <td data-label="ราคา"><?php echo $row['total_price']; ?> บาท</td>
-                                <td data-label="สถานะการทำงาน"><?php if ($row['nailer_book'] == '1') {
-                                                                    echo 'ทำงานเสร็จสิ้น';
+                                <td data-label="สถานะการทำงาน" class="working-success"><?php if ($row['nailer_book'] == '1') {
+                                                                    echo '<i class="bi bi-check-lg"></i> ทำงานเสร็จสิ้น ';
                                                                 } else { ?>
-                                        <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1">ยืนยัน</a>
+                                        <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1" 
+                                            class="btn btn-outline-primary">ยืนยันการทำงาน</a>
                                     <?php  }
 
                                     ?>
@@ -107,7 +108,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-1"></div>
+            <div class="col-2"></div>
         </div><br>
 
     </div>

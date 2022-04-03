@@ -236,5 +236,10 @@
 ิ.icon-data b i .bi{
     width: 200px;
 }
-
- 
+.working-success{
+    color: #6B8E23 !important;
+    font-size: 18px;
+}
+.working-success i .bi{
+    margin-top: -5px;
+}
