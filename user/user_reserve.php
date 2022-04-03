@@ -94,6 +94,7 @@
                                 
                             </td>
                             <td>
+                            <?php echo $row['book_id']; ?>
                                 <?php echo $row['total_price']; ?> บาท</td>
                             <td>
                             <span>

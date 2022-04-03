@@ -188,11 +188,11 @@
                                 <div class="py">
                                 <p>ราคารวม <b><?php echo $sumprice; ?></b> บาท</p>
                                 <label>
-                                    <input type="radio" class="option-input radio" name="example" checked />
+                                    <input type="radio" class="option-input radio" value="0" name="example" checked />
                                     ชำระเงินสด (ชำระผ่านทางร้าน)
                                 </label><br>
                                 <label>
-                                    <input type="radio" class="option-input radio" name="example" />
+                                    <input type="radio" class="option-input radio" value="1" name="example" />
                                     ชำระผ่านการโอน (ชำระผ่านบัญชีธนาคาร)
                                 </label>
                                 </div>
