@@ -42,24 +42,19 @@
             </div>
             <div class="col-4"></div>
         </div>
-    </div>
+    
 
     <div class="row">
-        <div class="col-md-1"></div>
-        <div div class="col-md-10">
+            <div div class="col-md-12">
                 <table class="table table-striped table-hover">
                     <thead>
-                        <!-- <th width="7%">รหัสสินค้า</th> -->
-                        <th width="10%">รูปภาพ</th>
-                        <th width="10%">ชื่อสินค้า</th>
+                        <!-- <th width="10%"><i class="bi bi-circle-fill"></i> รูปสินค้า</th> -->
+                        <th width="30%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
                         <!-- <th width="20%">รายละเอียด</th> -->
                         <!-- <th width="15%">ประเภทและรูปแบบ</th> -->
-                        <th width="20%">วันและเวลาที่จอง</th>
-                        <!-- <th>รูปแบบ</th>
-                        <th>ประเภท</th>
-                        <th>ต่อเล็บ/เซต</th> -->
-                        <th width="7%">ราคา</th>
-                        <th width="20%"><i class="bi bi-chat-dots"></i> รีวิวที่นี่</th>
+                        <th width="20%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
+                        <th width="10%"><i class="bi bi-circle-fill"></i> ราคา</th>
+                        <th width="10%"><i class="bi bi-chat-dots"></i> รีวิวที่นี่</th>
         
                     </thead>
 
@@ -68,34 +63,38 @@
                         <?php
                         $cus_id =  $_SESSION["cus_id"];
                         include('../conn/conn.php');
-                        $query=  "SELECT * FROM booking INNER JOIN customer on booking.cus_id=customer.cus_id 
-                        INNER JOIN book_nail_detail on book_nail_detail.book_id=booking.book_id 
-                        JOIN service_item on book_nail_detail.st_id = service_item.st_id  
-                        JOIN nailer on book_nail_detail.nailer_id = nailer.nailer_id 
-                        JOIN nail_set on nail_set.ns_id = service_item.ns_id 
-                        JOIN nail_type on nail_type.nt_id = service_item.nt_id 
-                        where customer.cus_id='$cus_id' ";                         
+                        $query=  "SELECT * FROM booking 
+                        where booking.cus_id='$cus_id'
+                        ";                         
                            
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($result)) { 
-                            $cus_id = $row['cus_id'];                  
-                                    ?>
+                            $book_id = $row['book_id'];               
+                        ?>
                         <tr>
-                            <!-- <td><?php echo $row['ST_ID']; ?></td> -->
-                            <td>
-                                <img class="img-responsive img-thumbnail" src="<?php echo $row['file'] ?>" />
-                            </td>  
-                            <td><?php echo $row['name']; ?></td>
-                            <!-- <td><?php echo $row['detail']; ?></td> -->
-                            <!-- <td>
-                                ประเภท : <?php echo $row['ns_name']; ?><br>
-                                รูปแบบ : <?php echo $row['nt_name']; ?>
-                            </td> -->
-                            <td>
-                                <?php echo $row['book_date']; ?><br>
-                                <?php echo $row['timeslots']; ?>
+                            <td data-label="รายละเอียดสินค้า">
+                            <?php
+                                $sqldetail = "SELECT * FROM book_nail_detail
+                                INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
+                                INNER JOIN service_item on book_nail_detail.st_id = service_item.st_id  
+                                INNER JOIN nail_set on nail_set.ns_id = service_item.ns_id 
+                                INNER JOIN nail_type on nail_type.nt_id = service_item.nt_id  
+                                where book_nail_detail.book_id = $book_id";
+                                $resultdetail = mysqli_query($conn, $sqldetail);
+                                while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
+                                <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
+                                <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
+                                    (<?php echo $rowdetail['ns_name']; ?>, 
+                                    <?php echo $rowdetail['nt_name']; ?>)<br>
+                                <?php } ?>
                             </td>
-                            <td><?php echo $row['price']; ?></td>
+                            <td>
+                                <i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?><br>
+                                <i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?>
+                                
+                            </td>
+                            <td>
+                                <?php echo $row['total_price']; ?> บาท</td>
                             <td>
                             <span>
                                 <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">
@@ -113,8 +112,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-1"></div>
-        </div><br><br>
+        </div>
+    </div><br><br>
 
     
 </body>
