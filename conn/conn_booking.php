@@ -21,9 +21,11 @@ $resultselect = mysqli_query($conn, $sqlselect);
 if ($numrow < 1) {
     $sqlInsert = "INSERT INTO booking(cus_id,book_status) VALUES($cus_id,0)";
     $result = mysqli_query($conn, $sqlInsert);
-
-    $rowselect = mysqli_fetch_array($resultselect);
-    $book_id = $rowselect['book_id'];
+    
+    $sqlselect2 = "SELECT * FROM booking WHERE cus_id = $cus_id ORDER BY book_id DESC LIMIT 1";
+    $resultselect2 = mysqli_query($conn, $sqlselect2);
+    $rowselect2 = mysqli_fetch_array($resultselect2);
+    $book_id = $rowselect2['book_id'];
     // $insrtDetail = "INSERT INTO book_nail_detail(book_id,S_ID,ST_ID,cus_price,date_add) VALUES ($book_id,$S_ID,$st_id,$price,'$date')";
     $insrtDetail = "INSERT INTO book_nail_detail(book_id,ST_ID,S_ID,cus_price,date_add) VALUES ($book_id,$st_id,$S_ID,'$price','$date')";
     mysqli_query($conn, $insrtDetail);
