@@ -60,7 +60,7 @@
                     <th width="7%">ราคารวม</th> 
                     <!-- <th width="7%">มัดจำ</th> 
                     <th width="7%">คงเหลือ</th>  -->
-                    <th width="15%">สลิปการโอน</th>
+                    <!-- <th width="15%">สลิปการโอน</th> -->
                     <!-- <th width="15%">สถานะ</th>  -->
                 </thead>
 
@@ -116,9 +116,9 @@
                             <!-- <td><?php echo ($sumprice*0.5); ?></td>
                             <td><?php echo ($sumprice*0.5); ?></td> -->
                             
-                            <td>
+                            <!-- <td>
                                 <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" />
-                            </td>
+                            </td> -->
                             <!-- <td><?php echo $row['book_status']; ?></td> -->
                             
 
