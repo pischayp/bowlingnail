@@ -28,10 +28,13 @@
 
     <div class="container--fluid" id="header_nailer">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-1"></div>
+            <div class="col-10" id="hr-nailer">
                 <h2>รายการดำเนินการของช่างทำเล็บ</h2>
+                <h6>ร้านทำเล็บ Bowling Nail and Spa.</h6>
             </div>
-        </div><br><br>
+            <div class="col-1"></div>
+        </div><br>
 
 
         <div class="row">

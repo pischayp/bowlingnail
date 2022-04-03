@@ -73,17 +73,19 @@
                 while ($row = mysqli_fetch_array($result)) {
                     $nailer_id = $row['nailer_id'];
                 ?>
-<div class="row">
-                        <div class="col-12">
-                <div class="card mb-3" id="nailer_data">
-                    
+
+                <div class="col-md-12" id="hr-nailer">
+                    <h2>รายการลางานของช่างทำเล็บ</h2>
+                    <h6>ร้านทำเล็บ Bowling Nail and Spa.</h6>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-3" id="nailer_data">                    
                             <div class="card-body"><br>
                                 <form action="../conn/conn_nailer_leave.php?nailer_id=<?php echo $nailer_id; ?>" method="POST"
                                     enctype="multipart/form-data">
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <h2>รายการลางานของช่างทำเล็บ</h2>
-                                        </div><br><br><br>
 
                                         <div class="col-4">
                                             <label>ชื่อช่างทำเล็บ : </label><br>

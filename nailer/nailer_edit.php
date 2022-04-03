@@ -21,16 +21,18 @@
 
 
 </head>
-
-<body><br><br><br><br><br>
+<body>
 
     <div class="container">
-        <div class="row" id="nailer_header">
-            <div class="col-md-12">
-                <h2>ข้อมูลส่วนตัวช่างทำเล็บ</h2>
+        <div class="row" id="header_nailer">
+            <div class="col-1"></div>
+            <div class="col-10" id="hr-nailer">
+                <h2>ข้อมูลส่วนตัวของช่างทำเล็บ</h2>
+                <h6>ร้านทำเล็บ Bowling Nail and Spa.</h6>
             </div>
+            <div class="col-1"></div>
         </div>
-    </div><br><br>
+    </div><br>
 
     <div class="row">
         <div class="col-2">
