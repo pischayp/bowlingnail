@@ -90,18 +90,18 @@
                                 <?php } ?>
                             </td>
                             <td data-label="วันและเวลาที่จอง">
-                                <i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?><br>
-                                <i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?>
+                                <b><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
+                                <b><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
                             </td>
                             <td data-label="ช่างทำเล็บ">
-                                <?php echo $row['nailer_name']; ?>
+                                <b><i class="bi bi-person"></i> <?php echo $row['nailer_name']; ?></b>
                             </td>
                             <td data-label="ราคารวม">
-                                <?php echo $row['total_price']; ?> บาท <br>
+                                <b><?php echo $row['total_price']; ?></b> บาท <br>
                             </td>
                             <td data-label="รูปแบบการชำระเงิน">
-                                <?php if ($row['payment_status'] == '1') {
-                                    echo '<i class="bi bi-check-lg"></i> ชำระเงินโดยจ่ายเงินสด';
+                                <?php if ($row['payment_status'] == '0') {
+                                    echo '<i class="bi bi-cash-coin"></i> ชำระเงินโดยจ่ายเงินสด';
                                 } else { ?>
                                   <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" /> 
                                 <?php } ?>

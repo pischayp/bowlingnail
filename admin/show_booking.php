@@ -65,58 +65,69 @@
 
                 <table class="table table-striped table-hover" width="100%">
                     <thead href="#payment_model.php">
-                        <!-- อาจจะใส่รูป -->
-                        <!-- <th></th>  -->
-                        <!-- <th width="2%">ลำดับ</th> -->
-                        <th scope="col" width="5%">รหัส</th>
-                        <th scope="col" width="10%">ชื่อลูกค้า</th>
-                        <th scope="col" width="12%">วันและเวลาที่จอง</th>
-                        <th scope="col" width="13%">รายละเอียดการจอง</th>
-                        <th scope="col" width="7%">ราคารวม</th>
-                        <th scope="col" width="15%">วันและเวลาที่ชำระ</th>
-                        <!-- <th scope="col" width="5%">มัดจำ</th>
-                        <th scope="col" width="10%">ยอดคงเหลือ</th> -->
-                        <th scope="col" width="10%">สลิปการโอน</th>
-                        <th scope="col" width="7%">สถานะ</th>
+                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองของลูกค้า</th>
+                        <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
+                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวม</th>
+                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> รูปแบบการชำระเงิน</th>
+                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> สถานะการชำระเงิน</th>
                     </thead>
 
                     <span>
                         <tbody>
                             <?php
-                        include('../conn/conn.php');
-                        $query=mysqli_query($conn,"SELECT * from booking 
-                        join customer on (customer.cus_id=booking.cus_id)
-                        WHERE slip!=''Order by book_id DESC ") ;
-                        while($row=mysqli_fetch_array($query)){
+                            include('../conn/conn.php');
+                            $query=mysqli_query($conn,"SELECT * from booking 
+                            join customer on (customer.cus_id=booking.cus_id)
+                            WHERE booking.book_id 
+                            group by booking.book_id
+                            Order by book_id DESC ") ;
+                            while($row=mysqli_fetch_array($query)){
                             
-
+                                $book_id = $row['book_id'];   
                             ?>
                             <tr>
-                                <td data-label="รหัส"><?php echo $row['book_id']; ?></td>
-                                <td data-label="ชื่อลูกค้า"><?php echo $row['username']; ?></td>
-                                <td data-label="วันและเวลาที่จอง">
-                                    <i class="bi bi-calendar-check"></i> <?php echo $row['book_date']; ?><br>
-                                    <i class="bi bi-alarm"></i> <?php echo $row['timeslots']; ?>
+                                <!-- <td data-label="รหัส"><?php echo $row['book_id']; ?></td>
+                                <td data-label="ชื่อลูกค้า"><?php echo $row['username']; ?></td> -->
+                                <td data-label="รายละเอียดการจอง">
+                                    <i class="bi bi-journal-check"></i><b> รหัสการจอง : </b><?php echo $row['book_id']; ?><br>
+                                    <i class="bi bi-person"></i><b> ชื่อลูกค้า : </b><?php echo $row['username']; ?><br>
+                                    <i class="bi bi-calendar-check"></i><b> วันที่จอง : </b><?php echo $row['book_date']; ?><br>
+                                    <i class="bi bi-alarm"></i><b> เวลาที่จอง : </b><?php echo $row['timeslots']; ?>
                                 </td>
-                                <td data-label="">
-                                    
+
+                                <td data-label="รายละเอียดสินค้า">
+                                <?php
+                                    $sqldetail = "SELECT * FROM book_nail_detail
+                                    INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
+                                    INNER JOIN service_item on book_nail_detail.st_id = service_item.st_id  
+                                    INNER JOIN nail_set on nail_set.ns_id = service_item.ns_id 
+                                    INNER JOIN nail_type on nail_type.nt_id = service_item.nt_id  
+                                    where book_nail_detail.book_id = $book_id";
+                                    $resultdetail = mysqli_query($conn, $sqldetail);
+                                    while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
+                                    <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
+                                    <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
+                                        (<?php echo $rowdetail['ns_name']; ?>, 
+                                        <?php echo $rowdetail['nt_name']; ?>)<br>
+                                    <?php } ?>
                                 </td>
-                                <td data-label="ราคารวม"><?php echo $row['total_price']; ?></td>
-                                <td data-label="วันและเวลาที่ชำระ">
-                                    <i class="bi bi-calendar-check"></i> <?php echo $row['paid_date']; ?><br>
-                                    <i class="bi bi-alarm"></i> <?php echo $row['paid_time']; ?>
-                                </td>
-                                <!-- <td data-label="มัดจำ"><?php echo $row['amount_paid']; ?></td>
-                                <td data-label="ยอดคงเหลือ"><?php echo $row['amount_left']; ?></td> -->
-                                <td data-label="สลิปการโอน">
-                                    <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" />
+
+                                <td data-label="ราคารวม"><b><?php echo $row['total_price']; ?></b> บาท</td>
+    
+                                <td data-label="รูปแบบการชำระเงิน">
+                                    <?php if ($row['payment_status'] == '0') {
+                                        echo 'ชำระเงินโดยจ่ายเงินสด';
+                                    } else { ?>
+                                    <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" width="80%" /> 
+                                    <?php } ?>
+                                    <!-- <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" /> -->
                                 </td>
                                 <td data-label="สถานะ">
-                                    <?php if($row['status_id']=='0') {
+                                    <?php if($row['payment_status']=='0') {
                                 ?>
 
                                     <a href="#payment<?php echo $row['book_id']; ?>" class="btn btn-primary"
-                                        data-toggle="modal"></i> ยืนยันการจอง</a>
+                                        data-toggle="modal"></i> ยืนยันการชำระเงิน</a>
                                     <?php include('../model/payment_model.php'); ?>
                                     <?php
                                 }else if($row['status_id']=='1') {

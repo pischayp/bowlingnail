@@ -89,13 +89,13 @@
                                 <?php } ?>
                             </td>
                             <td>
-                                <i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?><br>
-                                <i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?>
+                                <b><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
+                                <b><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
                                 
                             </td>
                             <td>
-                            <?php echo $row['book_id']; ?>
-                                <?php echo $row['total_price']; ?> บาท</td>
+                            <!-- <?php echo $row['book_id']; ?> -->
+                                <b><?php echo $row['total_price']; ?></b> บาท</td>
                             <td>
                             <span>
                                 <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">
