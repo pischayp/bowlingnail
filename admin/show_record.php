@@ -81,6 +81,7 @@
                          $n = 1;
                          $sql = "SELECT * FROM book_nail_detail 
                          INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
+                         INNER JOIN customer ON booking.cus_id=customer.cus_id
                          INNER JOIN nailer ON nailer.nailer_id=book_nail_detail.nailer_id
                          INNER JOIN service_item ON service_item.ST_ID=book_nail_detail.ST_ID
                          INNER JOIN service_type ON service_type.S_ID=book_nail_detail.S_ID

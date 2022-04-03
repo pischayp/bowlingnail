@@ -1,8 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <?php include "../header_nailer.php";?>
+    <?php include "../header_nailer.php"; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bowling Nail & Spa. | ร้านทำเล็บและสปา</title>
@@ -16,89 +16,99 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@200;300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/541e01753a.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 
 </head>
+
 <body>
 
-<div class="container--fluid" id="header_nailer">
+    <div class="container--fluid" id="header_nailer">
         <div class="row">
             <div class="col-md-12">
                 <h2>รายการดำเนินการของช่างทำเล็บ</h2>
             </div>
         </div><br><br>
 
+
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table" width="100%">
-                        <!-- อาจจะใส่รูป -->
-                        
-                        <th scope="col" width="10%">รหัสลูกค้า</th> 
-                        <!-- <th width="5%">ชื่อลูกค้า</th>  -->
-                        <th scope="col" width="10%">วันที่จอง</th>
-                        <th scope="col" width="15%">เวลาที่จอง</th>
-                        <!-- <th scope="col">เวลาสิ้นสุด</th> -->
-                        <th scope="col" width="30%">รายละเอียดสินค้า</th>
-                        <th scope="col" width="10%">ราคา</th>
-                        <th scope="col" width="10%">สถานะการทำงาน</th>
-          
+                        <tr>
+                            <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองลูกค้า</th>
+                            <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
+                            <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวม</th>
+                            <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> สถานะการทำงาน</th>
+                        </tr>
                     </thead>
-                    <span>
-                        <tbody class="header-table">
-                        <?php 
-                         include('../conn/conn.php');
-                         $nailer_id =  $_SESSION["nailer_id"]; 
-                         $book_id =  $_SESSION["book_id"];
-                         $sql = "SELECT * FROM booking
-                         INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id 
-                         INNER JOIN customer ON booking.cus_id=booking.cus_id
-                         INNER JOIN service_item ON service_item.ST_ID=book_nail_detail.ST_ID 
-                         INNER JOIN nailer ON nailer.nailer_id=book_nail_detail.nailer_id where nailer.nailer_id = $nailer_id";
-                         $result = mysqli_query($conn, $sql);
-                         while ($row = mysqli_fetch_array($result)) { ?>
-                        
-                       
-                        </tbody>
-                        <td data-label="รหัสลูกค้า"><?php echo $row['book_id']; ?></td>
-                        <td data-label="วันที่จอง"><?php echo $row['date_add']; ?></td>
-                        <td data-label="เวลาที่จอง"><?php echo $row['timeslots']; ?></td>
-                        <td data-label="รายละเอียดสินค้า">
-                            รูปภาพ : <img src="<?php echo $row['file']; ?>" width="30%"><br>
-                            ชื่อ : <?php echo $row['name']; ?>
-                        </td>
-                        <td data-label="ราคา"><?php echo $row['cus_price']; ?></td>
-                        <td data-label="สถานะการทำงาน"><?php if ($row ['nailer_book'] == '1') {
-                            echo 'ทำงานเสร็จสิ้น'; }
-                        else { ?>
-                            <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1">ยืนยัน</a> 
-                      <?php  }
-                        
-                        ?> </td>
+
+                    <tbody class="header-table">
+                        <?php
+                        include('../conn/conn.php');
+                        $nailer_id =  $_SESSION["nailer_id"];
+                        $book_id =  $_SESSION["book_id"];
+                        $sql = "SELECT * FROM booking
+                        INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
+                        INNER JOIN customer ON booking.cus_id=customer.cus_id
+                        INNER JOIN nailer ON book_nail_detail.nailer_id=nailer.nailer_id where nailer.nailer_id = $nailer_id 
+                        group by booking.book_id order by book_nail_detail.nailer_id ";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
+                            $booking_id = $row["book_id"]; ?>
+
+                            <tr>
+                                <td data-label="ข้อมูลลูกค้า" class="icon-data">
+                                    <b><i class="bi bi-journal-check"></i> รหัสการจอง : </b> <?php echo $row['book_id']; ?><br>
+                                    <b><i class="bi bi-person"></i> ชื่อลูกค้า : </b> <?php echo $row['username']; ?> <br>
+                                    <b><i class="bi bi-calendar2-week"></i> วันที่จอง : </b> <?php echo $row['date_add']; ?> <br>
+                                    <b><i class="bi bi-clock"></i> เวลาที่จอง : </b> <?php echo $row['timeslots']; ?>
+                                </td>
+
+                                <td data-label="รายละเอียดสินค้า">
+
+                                    <?php
                                    
-                         <?php 
-                         }
-                         ?>
+                                    $sqldetail = "SELECT * FROM book_nail_detail
+                            INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
+                            INNER JOIN service_item ON book_nail_detail.ST_ID=service_item.ST_ID 
+                            INNER JOIN service_type ON book_nail_detail.S_ID=service_type.S_ID 
+                            where book_nail_detail.book_id = $booking_id";
+                                    $resultdetail = mysqli_query($conn, $sqldetail);
+                                    while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
+                                        
+                                        <img src="<?php echo $rowdetail['file']; ?>" width="70px"><br>
+                                        <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br>
+                                        <!-- <b> รายละเอียด : </b><?php echo $rowdetail['detail']; ?><br> -->
+                                    <?php } ?>
+                                </td>
+
+                                <td data-label="ราคา"><?php echo $row['total_price']; ?> บาท</td>
+                                <td data-label="สถานะการทำงาน"><?php if ($row['nailer_book'] == '1') {
+                                                                    echo 'ทำงานเสร็จสิ้น';
+                                                                } else { ?>
+                                        <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1">ยืนยัน</a>
+                                    <?php  }
+
+                                    ?>
+                                </td>
+
+                            <?php
+                        }
+                            ?>
+                            </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="col-1"></div>
         </div><br>
-    
+
     </div>
 
-   
-    
 </body>
+
 </html>

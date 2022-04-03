@@ -134,58 +134,7 @@
             <br><br>
             </div>
             
-            <!-- <div class="col-lg-5">
-            <table class="table table-striped table-hover" id="table_booking">
-                <thead>
-                    
-
-                    <th width="10%">รูปภาพ </th>
-                    <th width="10%">ชื่อลาย</th>
-                    <th width="10%">รายละเอียด</th>
-                    <th width="10%">รูปแบบ</th>
-                    <th width="10%">ราคา</th>
-                    <th width="5%"></th>
-                </thead>
-                <tbody>
-                    <?php
-                    include('../conn/conn.php');
-                    $cus_id = $_SESSION['cus_id'];
-                    $sqlselect = "SELECT * FROM booking WHERE cus_id = $cus_id and book_status = 0 ORDER BY book_id DESC LIMIT 1";
-                    $resultselect = mysqli_query($conn, $sqlselect);
-                    $numrow = mysqli_num_rows($resultselect);
-                    if ($numrow > 0) {
-                        $rowselect = mysqli_fetch_array($resultselect);
-                        $book_id = $rowselect['book_id'];
-                        $sqldetail = "SELECT * FROM book_nail_detail INNER join service_item on service_item.ST_ID =  book_nail_detail.ST_ID 
-                                        INNER join nail_set on service_item.ns_id = nail_set.ns_id 
-                                        WHERE service_item.S_ID != 1 and service_item.S_ID != 2 and service_item.S_ID != 3 
-                                        and service_item.S_ID != 4 and service_item.S_ID != 5 and book_id = $book_id";
-                        $resultdetail = mysqli_query($conn, $sqldetail);
-
-                        while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
-                            <tr>
-                                <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"></th>
-                                <td width="10%"><?php echo $rowdetail['name'] ?></td>
-                                <td width="20%"><?php echo $rowdetail['detail'] ?></td>
-                                <td width="10%"><?php echo $rowdetail['ns_name'] ?></td>
-                                <td width="10%"><?php echo $rowdetail['price'] ?></td>
-                                <td style="width:8%;">
-                                    <span>
-                                        <a href="#delbook<?php echo $rowdetail['bd_id']; ?>" data-toggle="modal" class="btn btn-danger">
-                                            <span class="glyphicon glyphicon-trash"></span>ลบ </a>
-                                        <?php include('../model/booking_model.php'); ?>
-                                    </span>
-                                </td>
-                            </tr>
-                    <?php
-                        }
-                    }
-                    ?>
-                </tbody>
-                <br><br>
-            </table>
-            <br><br>
-            </div> -->
+            
             <div class="col-1"></div>
         </div>
 

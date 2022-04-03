@@ -6,7 +6,7 @@
 	$nailer_tel=$_POST['nailer_tel'];
 	$fname=$_POST['fname'];
 	$lname=$_POST['lname'];
-	$username=$_POST['username'];
+	$nailer_username=$_POST['nailer_username'];
 	$password=$_POST['password'];
 	$nailer_picture=$_POST['nailer_picture'];
 
@@ -28,8 +28,8 @@
 		$pic = $pro_image;
  
 
-     mysqli_query($conn, "insert into nailer (nailer_id, nailer_name, nailer_tel, username, password) 
-	 values ('$nailer_id','$nailer_name', '$nailer_tel', '$username', '$password', '$pic')");
+     mysqli_query($conn, "insert into nailer (nailer_id, nailer_name, nailer_tel, nailer_username, password) 
+	 values ('$nailer_id','$nailer_name', '$nailer_tel', '$nailer_username', '$password', '$pic')");
      header('location:../nailer/nailer_working.php');
 	}
 ?>

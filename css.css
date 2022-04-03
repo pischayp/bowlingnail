@@ -401,6 +401,9 @@ strong{
 #leave_date{
     width: 500px !important;
 }
+.description{
+    word-break: keep-all;
+}
 
 #payment-nail img{
     border-radius: 5px;

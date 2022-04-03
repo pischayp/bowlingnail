@@ -64,8 +64,7 @@
 
     <div class="container" id="header_nailer">
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10">
+            <div class="col-12">
                 <?php
                 $nailer_id =  $_SESSION["nailer_id"];
                 include('../conn/conn.php');
@@ -74,11 +73,10 @@
                 while ($row = mysqli_fetch_array($result)) {
                     $nailer_id = $row['nailer_id'];
                 ?>
-
+<div class="row">
+                        <div class="col-12">
                 <div class="card mb-3" id="nailer_data">
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-md-12">
+                    
                             <div class="card-body"><br>
                                 <form action="../conn/conn_nailer_leave.php?nailer_id=<?php echo $nailer_id; ?>" method="POST"
                                     enctype="multipart/form-data">
@@ -150,7 +148,6 @@
                                     }
                                         ?><br>
                     </div>
-                    <div class="col"></div>
                 </div>
             </div>
         </div><br>
@@ -191,11 +188,12 @@
                                                     } else if ($row_leave['leave_end'] == '0000-00-00') {
                                                         echo $row_leave['leave_begin'];
                                                     } else {
-                                                        echo $row_leave['leave_begin'] . ' จนถึง ' . $row_leave['leave_end'];
+                                                        echo $row_leave['leave_begin'] . '<br> จนถึง ' . $row_leave['leave_end'];
                                                     } ?>
                             </td>
                             <td data-label="การลางาน"><?php echo $row_leave['leave_type'] ?></td>
-                            <td data-label="หมายเหตุการลา"><?php echo $row_leave['leave_description'] ?></td>
+                            <td data-label="หมายเหตุการลา" class="description"><?php echo $row_leave['leave_description'] ?></td>
+                            <!-- text overflow กำหนดให้ตัวหนังสือไม่เกิน -->
                             <td data-label="สถานะ">
                                 <?php
                                 if ($row_leave['leavestatus_id'] == 1) {

@@ -30,10 +30,10 @@ if(isset($_POST['login']))
         }			
     }  
 
-    $username=$_POST['username'];  
+    $nailer_username=$_POST['username'];  
     $password=$_POST['password'];
   
-   $sql2="select * from nailer where username='$username' and password='$password'";
+   $sql2="select * from nailer where nailer_username='$nailer_username' and password='$password'";
    $result2 = mysqli_query($conn,$sql2);
    $num_row2 = mysqli_num_rows($result2);
 	
@@ -42,7 +42,7 @@ if(isset($_POST['login']))
     {$row2=mysqli_fetch_array($result2);
        
         if($row2["typeuser_id"]==3){
-            $_SESSION["username"]=$row2["username"];
+            $_SESSION["nailer_username"]=$row2["nailer_username"];
             $_SESSION["nailer_name"]=$row2["nailer_name"];
             $_SESSION["password"]=$row2["password"];
             $_SESSION["nailer_id"]=$row2["nailer_id"];
