@@ -163,7 +163,7 @@
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table">
                         <tr>
-                            <th scope="col" width="5%">ลำดับ</th>
+                            <!-- <th scope="col" width="5%">ลำดับ</th> -->
                             <th scope="col" width="10%">ชื่อช่างทำเล็บ</th>
                             <th scope="col" width="15%">วันที่เริ่มและสิ้นสุดการลา</th>
                             <th scope="col" width="10%">การลางาน</th>
@@ -182,7 +182,7 @@
                     while ($row_leave = mysqli_fetch_array($result)) { ?>
                         <tbody>
                             <tr>
-                            <td scope="row" data-label="ลำดับ"><?php echo $n ?></td>
+                            <!-- <td scope="row" data-label="ลำดับ"><?php echo $n ?></td> -->
                             <td data-label="ชื่อช่างทำเล็บ" class="des"><?php echo $row_leave['nailer_name'] ?></td>
                             <td data-label="วันที่เริ่มและสิ้นสุดการลา"><?php
                                                     if ($row_leave['leave_begin'] == $row_leave['leave_end']) {

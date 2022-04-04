@@ -53,7 +53,7 @@
                     <th width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
                     <th width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
                     <th width="10%"><i class="bi bi-circle-fill"></i> ราคา</th>
-                    <th width="15%"><i class="bi bi-circle-fill"></i> รูปแบบการชำระเงิน</th>
+                    <th width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
                     </thead>
 
                     <tbody>                        
@@ -99,15 +99,19 @@
                             <td data-label="ราคารวม">
                                 <b><?php echo $row['total_price']; ?></b> บาท <br>
                             </td>
-                            <td data-label="รูปแบบการชำระเงิน">
+
+                            <!-- สถานะ : จองสำเร็จ or กำลังดำเนินการ -->
+                            <td data-label="สถานะการจอง">
+
+                            </td>
+                            <!-- <td data-label="รูปแบบการชำระเงิน">
                                 <?php if ($row['payment_status'] == '0') {
                                     echo '<i class="bi bi-cash-coin"></i> ชำระเงินโดยจ่ายเงินสด';
                                 } else { ?>
                                   <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" /> 
                                 <?php } ?>
                                     
-                            </td>
-                            
+                            </td> -->
                         </tr>
                         <?php
                         }                

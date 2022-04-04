@@ -87,7 +87,7 @@
                             ?>
                             <tr>
                                 <td data-label="รายละเอียดการจอง">
-                                    
+                                    <i class="bi bi-journal-check"></i><b> รหัสการจอง : </b><?php echo $row['book_id']; ?><br>
                                     <i class="bi bi-person"></i><b> ชื่อลูกค้า : </b><?php echo $row['username']; ?><br>
                                     <i class="bi bi-calendar-check"></i><b> วันที่จอง : </b><?php echo $row['book_date']; ?><br>
                                     <i class="bi bi-alarm"></i><b> เวลาที่จอง : </b><?php echo $row['timeslots']; ?>

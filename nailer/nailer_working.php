@@ -54,12 +54,13 @@
                         <?php
                         include('../conn/conn.php');
                         $nailer_id =  $_SESSION["nailer_id"];
-                        $book_id =  $_SESSION["book_id"];
+                        
                         $sql = "SELECT * FROM booking
                         INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
                         INNER JOIN customer ON booking.cus_id=customer.cus_id
                         INNER JOIN nailer ON book_nail_detail.nailer_id=nailer.nailer_id where nailer.nailer_id = $nailer_id 
-                        group by booking.book_id order by book_nail_detail.nailer_id ";
+                        group by booking.book_id
+                        order by book_nail_detail.book_id desc ";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             $booking_id = $row["book_id"]; ?>
