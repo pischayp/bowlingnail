@@ -161,6 +161,14 @@
                     <span class="glyphicon glyphicon-trash"></span>ประวัติการจองของลูกค้า</a>
                     </div>
                 </div>
+                &emsp;
+                <div class="card">
+                    <img src="../img/เอฟโสด.png" class="card-img-top">
+                    <div class="card-body">
+                    <a href="../admin/dashboard.php" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>DashBoard</a>
+                    </div>
+                </div>
                 </div>
             </div>
             <div class="col"></div>
