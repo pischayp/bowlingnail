@@ -266,16 +266,28 @@
 }
 
 
+
 .content-nailer{
-    
     padding: 0px;
     max-width: 300px;
     /* text-align: center; */
   }
   .dp{
     margin: -15px;
-    display:flex;
+    /* display:flex; */
     justify-content:space-around;
+  }
+  .option{
+      font-size: 18px;
+      word-wrap: break-word;
+  }
+  .option .non-work {
+      font-size: 14px;
+      color: #990000;
+  }
+  .option .non-clock{
+    text-decoration:line-through;
+    color: #cbd1d8;
   }
   label{
     display:block;
@@ -295,7 +307,7 @@
     height: 20px;
     width: 20px;
     transition: all 0.15s ease-out 0s;
-    background: #cbd1d8;
+    background: #fff;
     border: none;
     color: #fff;
     cursor: pointer;
