@@ -250,3 +250,108 @@
 .working-success i .bi{
     margin-top: -5px;
 }
+
+/* radio button */
+.radio-nailer{
+    display: block;
+  position: relative;
+  padding-left: 31px;
+  margin-bottom: -10px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.content-nailer{
+    
+    padding: 0px;
+    max-width: 300px;
+    /* text-align: center; */
+  }
+  .dp{
+    margin: -15px;
+    display:flex;
+    justify-content:space-around;
+  }
+  label{
+    display:block;
+    line-height:5px;
+  }
+  .option-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+  }
+  .option-input:hover {
+    background: #cbd1d8;
+  }
+  .option-input:checked {
+    background: #0033FF;
+  }
+  .option-input:checked::before {
+    width: 30px;
+    height: 30px;
+    display:flex;
+    content: '\f00c';
+    font-size: 25px;
+    font-weight:bold;
+    position: absolute;
+    align-items:center;
+    justify-content:center;
+    font-family:'Font Awesome 5 Free';
+  }
+  .option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #66CCFF;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+  .option-input.radio {
+    border-radius: 50%;
+  }
+  .option-input.radio::after {
+    border-radius: 50%;
+  }
+  
+  @keyframes click-wave {
+    0% {
+      height: 30px;
+      width: 30px;
+      opacity: 0.35;
+      position: relative;
+    }
+    100% {
+      height: 100px;
+      width: 100px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+    }
+  }
