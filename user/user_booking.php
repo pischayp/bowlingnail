@@ -52,7 +52,7 @@
                     <th width="30%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
                     <th width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
                     <th width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> ราคา</th>
+                    <th width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
                     <th width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
                     </thead>
 
@@ -83,26 +83,35 @@
                                 $resultdetail = mysqli_query($conn, $sqldetail);
                                 while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                 <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
-                                <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
+                                <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?> 
                                     ( <?php echo $rowdetail['ns_name']; ?>, 
                                     <?php echo $rowdetail['nt_name']; ?>, 
                                     <?php echo $rowdetail['price']; ?> บาท )<br>
                                 <?php } ?>
                             </td>
                             <td data-label="วันและเวลาที่จอง">
-                                <b><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
-                                <b><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
+                                <b class="user_word"><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
+                                <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
                             </td>
                             <td data-label="ช่างทำเล็บ">
-                                <b><i class="bi bi-person"></i> <?php echo $row['nailer_name']; ?></b>
+                                <b class="user_word"><i class="bi bi-person"></i> <?php echo $row['nailer_name']; ?></b>
                             </td>
                             <td data-label="ราคารวม">
-                                <b><?php echo $row['total_price']; ?></b> บาท <br>
+                                <b class="user_payment"><?php echo $row['total_price']; ?></b> บาท <br>
                             </td>
 
                             <!-- สถานะ : จองสำเร็จ or กำลังดำเนินการ -->
                             <td data-label="สถานะการจอง">
-
+                                    <?php if ($row['nailer_book'] == '0') {
+                                        echo '<b><p class="success-wait"><i class="bi bi-clock-history"></i> รอการดำเนินงาน</p></b>';
+                                    } else if ($row['nailer_book'] == '1') { ?>
+                                    <?php 
+                                        echo '<b><p class="success-work"><i class="bi bi-hourglass-split"></i> กำลังดำเนินงาน</p></b>';
+                                    } else  { ?>
+                                    <?php
+                                        echo '<b><p class="success-con"><i class="bi bi-check-lg"></i> ทำงานเสร็จสิ้น <b>'; ?>
+                                    <?php  }
+                                    ?>
                             </td>
                             <!-- <td data-label="รูปแบบการชำระเงิน">
                                 <?php if ($row['payment_status'] == '0') {

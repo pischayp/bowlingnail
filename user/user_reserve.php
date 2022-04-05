@@ -52,8 +52,8 @@
                         <th width="30%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
                         <!-- <th width="20%">รายละเอียด</th> -->
                         <!-- <th width="15%">ประเภทและรูปแบบ</th> -->
-                        <th width="20%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
-                        <th width="10%"><i class="bi bi-circle-fill"></i> ราคา</th>
+                        <th width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
+                        <th width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
                         <th width="10%"><i class="bi bi-chat-dots"></i> รีวิวที่นี่</th>
         
                     </thead>
@@ -83,19 +83,19 @@
                                 $resultdetail = mysqli_query($conn, $sqldetail);
                                 while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                 <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
-                                <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
+                                <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?> 
                                     (<?php echo $rowdetail['ns_name']; ?>, 
                                     <?php echo $rowdetail['nt_name']; ?>)<br>
                                 <?php } ?>
                             </td>
                             <td>
-                                <b><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
-                                <b><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
+                                <b class="user_word"><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
+                                <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
                                 
                             </td>
                             <td>
                             <!-- <?php echo $row['book_id']; ?> -->
-                                <b><?php echo $row['total_price']; ?></b> บาท</td>
+                                <b class="user_word"><?php echo $row['total_price']; ?></b> บาท</td>
                             <td>
                             <span>
                                 <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">

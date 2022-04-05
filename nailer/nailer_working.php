@@ -38,8 +38,8 @@
 
 
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-1"></div>
+            <div class="col-10">
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table" width="100%">
                         <tr>
@@ -58,7 +58,8 @@
                         $sql = "SELECT * FROM booking
                         INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
                         INNER JOIN customer ON booking.cus_id=customer.cus_id
-                        INNER JOIN nailer ON book_nail_detail.nailer_id=nailer.nailer_id where nailer.nailer_id = $nailer_id 
+                        INNER JOIN nailer ON book_nail_detail.nailer_id=nailer.nailer_id 
+                        where nailer.nailer_id = $nailer_id 
                         group by booking.book_id
                         order by book_nail_detail.book_id desc ";
                         $result = mysqli_query($conn, $sql);
@@ -92,13 +93,24 @@
                                 </td>
 
                                 <td data-label="ราคา"><?php echo $row['total_price']; ?> บาท</td>
-                                <td data-label="สถานะการทำงาน" class="working-success"><?php if ($row['nailer_book'] == '1') {
-                                                                    echo '<i class="bi bi-check-lg"></i> ทำงานเสร็จสิ้น ';
-                                                                } else { ?>
-                                        <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1" 
-                                            class="btn btn-outline-primary">ยืนยันการทำงาน</a>
-                                    <?php  }
-
+                                <td data-label="สถานะการทำงาน" class="working-success">
+                                        <?php 
+                                            if ($row['nailer_book'] == '0') {
+                                                echo '';
+                                        ?>
+                                            <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1" 
+                                            class="btn btn-outline-primary"><i class="bi bi-clock-history"></i> เริ่มการดำเนินงาน</a>
+                                        <?php } 
+                                            else if($row['nailer_book'] == '1'){ 
+                                                echo '<p class="success-work"><i class="bi bi-hourglass-split"></i> กำลังดำเนินงาน...</p>';
+                                        ?>  
+                                            
+                                            <a href="../conn/conn_worksuccess.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=2" 
+                                            id="success-con" class="btn btn-outline-success">ยืนยันการดำเนินงานเสร็จสิ้น</a>
+                                        <?php } 
+                                            else {
+                                         echo '<b class="success-con"><p><i class="bi bi-check-circle"></i> ดำเนินงานเสร็จสิ้น</p></b>';
+                                    }
                                     ?>
                                 </td>
 
@@ -109,11 +121,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-2"></div>
+            <div class="col-1"></div>
         </div><br>
 
     </div>
-
 </body>
-
 </html>

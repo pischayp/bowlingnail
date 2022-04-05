@@ -69,16 +69,17 @@
                         <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองของลูกค้า</th>
                         <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
                         <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคาทั้งหมด</th>
-                        <!-- <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th> -->
+                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
+                        <!-- ยังติดเออเร่อ -->
                     </thead>
 
                     <span>
                         <tbody>
-                            <?php
-                            
+                            <?php            
                             include('../conn/conn.php');
                             $query=mysqli_query($conn,"SELECT * from booking 
-                            JOIN customer on customer.cus_id = booking.cus_id
+                           
+                            INNER JOIN customer ON booking.cus_id=customer.cus_id
                             WHERE booking.book_id
                             group by booking.book_id
                             Order by book_id DESC ") ;
@@ -113,9 +114,9 @@
                                 </td>
 
                                 <td data-label="ราคารวม"><b><?php echo $row['total_price']; ?></b> บาท</td>                                
-                                <!-- <td data-label="ช่างทำเล็บ">
+                                <td data-label="ช่างทำเล็บ">
                                     <b><i class="bi bi-person"></i> <?php echo $row['nailer_name']; ?></b>
-                                </td> -->
+                                </td>
                             
                             </tr>
                             <?php
