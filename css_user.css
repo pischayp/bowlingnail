@@ -199,6 +199,27 @@
 }
 
 /* success */
+.success-con{
+    color: green;
+    font-size: 16px;
+}
+.success-wait{
+    color: #696969;
+    font-size: 16px;
+}
+.success-work{
+    color: #4169E1;
+    font-size: 16px;
+}
+.user_payment{
+    font-size: 16px;
+}
+.user_word{
+    font-size: 16px;
+}
+.user_word i{
+    font-size: 16px;
+}
 
 /* #success i .bi .bi-check-circle-fill::before{
     width: 500px !important;

@@ -143,7 +143,13 @@
                                                     <a href="..">กดเพื่อดูโปรไฟล์ช่างทำเล็บ</a>
                                                     </p>
                                                     </ /?php $arraytmend=array(); $arraytmstr=array(); $qr_allDetail=mysqli_query($conn, "select * from book_nail_detail WHERE nailer_id = $nailerid AND date_add = '$date'" ); while ($row_allDetail=mysqli_fetch_array($qr_allDetail)) { $allDetaildate=$row_allDetail['date_add']; $timestart=date("H", strtotime($row_allDetail['time_start'])); $timeend=date("H", strtotime($row_allDetail['time_end'])); array_push($arraytmstr, $timestart); array_push($arraytmend, $timeend); } ?>
-                                                    <input type="radio" name="radionailer" value="<?php echo $row1['nailer_id'] ?>" required checked>&nbsp;&nbsp; เลือกช่างทำเล็บ
+                                                    <div class="content-nailer">
+                                                    <div class="dp">
+                                                        <div class="py">    
+                                                            <input  class="option-input radio" type="radio" name="radionailer" value="<?php echo $row1['nailer_id'] ?>" required checked>&nbsp;&nbsp; เลือกช่างทำเล็บ
+                                                        </div>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <label class="timenailer"><i class="bi bi-alarm"></i> &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
@@ -155,13 +161,12 @@
                                                     $select_date = $_GET['bookingdate'];
                                                     $chknailer = $row1['nailer_id'];
                                                     $sql = "SELECT * from booking
-                                            INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
-                                             where booking.book_date = '$select_date' and  book_nail_detail.nailer_id=$chknailer ";
+                                                        INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
+                                                        where booking.book_date = '$select_date' and  book_nail_detail.nailer_id=$chknailer ";
                                                     // $query = '10:00-11:00,16:00-17:00';
                                                     $result_emp1 = mysqli_query($conn, $sql);
                                                     while ($query_emp1 = mysqli_fetch_assoc($result_emp1)) {
                                                         $chktmslot = $query_emp1['timeslots'];
-
                                                         $select = explode(",", $chktmslot);
                                                         // print_r($select);
                                                         foreach ($select as $element) {
@@ -174,22 +179,29 @@
                                                     // while($row=mysqli_fetch_assoc($result)){
                                                     //     print_r($row);
                                                     // }
-
                                                     // print_r($select);
                                                     // print_r($startTime);
                                                     $time = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
                                                     for ($i = 0; $i < count($time) - 1; $i++) {
                                                     ?>
-
-                                                        <label for="timeslot"><input class="checkbox-nailer" type="radio" name="timeslot[]" <?php echo in_array($time[$i], $startTime) ? 'readonly disabled'  : $time[$i] ?> value="<?php echo $time[$i] ?>">
-                                                            <?php echo $time[$i] ?> - <?php echo $time[$i + 1] ?></label>
+                                                    <div class="content-nailer">
+                                                    <div class="dp">
+                                                        <div class="py">
+                                                        <label for="timeslot">
+                                                            <input class="option-input radio" type="radio" name="timeslot[]" 
+                                                            <?php echo in_array($time[$i], $startTime) ? 'readonly disabled' : $time[$i] ?>  value="<?php echo $time[$i] ?> ">
+                                                            
+                                                            <?php echo $time[$i] ?> - <?php echo $time[$i + 1] ?>
+                                                            <!-- radio button ที่ลูกค้าเลือกเวลาไปแล้ว เขียนไม่ว่าง -->
+                                                        </label>
+                                                        </div>
+                                                    </div>
+                                                    </div>
                                                         <br>
                                                     <?php
-
                                                     }
                                                     $i++;
                                                     ?>
-
                                                 </div>
                                             <?php
                                             }
@@ -228,21 +240,27 @@
                                                     <a href="..">กดเพื่อดูโปรไฟล์ช่างทำเล็บ</a>
                                                     </p>
                                                     </ /?php $arraytmend=array(); $arraytmstr=array(); $qr_allDetail=mysqli_query($conn, "select * from book_nail_detail WHERE nailer_id = $nailerid AND date_add = '$date'" ); while ($row_allDetail=mysqli_fetch_array($qr_allDetail)) { $allDetaildate=$row_allDetail['date_add']; $timestart=date("H", strtotime($row_allDetail['time_start'])); $timeend=date("H", strtotime($row_allDetail['time_end'])); array_push($arraytmstr, $timestart); array_push($arraytmend, $timeend); } ?>
-                                                    <input type="radio" name="radionailer" value="<?php echo $row2['nailer_id'] ?>" required>&nbsp;&nbsp; เลือกช่างทำเล็บ
+                                                    <div class="content-nailer">
+                                                    <div class="dp">
+                                                        <div class="py">
+                                                            <input class="option-input radio" type="radio" name="radionailer" 
+                                                                value="<?php echo $row2['nailer_id'] ?>" required>&nbsp;&nbsp; เลือกช่างทำเล็บ
+                                                        </div>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <label class="timenailer"><i class="bi bi-alarm"></i> &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
+                                                    <label class="timenailer">
+                                                        <i class="bi bi-alarm"></i> &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
                                                     </label><br>
-
-
                                                     <?php
 
                                                     $startTime2 = [];
                                                     // $select = ["10:00-11:00", "16:00-17:00"];
                                                     $chknailer2 = $row2['nailer_id'];
                                                     $sql = "SELECT * from booking
-                                            INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
-                                             where booking.book_date = '$select_date' and  book_nail_detail.nailer_id=$chknailer2 ";
+                                                        INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
+                                                        where booking.book_date = '$select_date' and  book_nail_detail.nailer_id=$chknailer2 ";
                                                     // $query = '10:00-11:00,16:00-17:00';
                                                     $result_emp2 = mysqli_query($conn, $sql);
                                                     while ($query_emp2 = mysqli_fetch_assoc($result_emp2)) {
@@ -255,27 +273,30 @@
                                                             array_push($startTime2, explode("-", $element2)[0]);
                                                         }
                                                     }
-
                                                     // echo($query);
                                                     // exit;
-
-
-
                                                     // print_r($startTime);
 
                                                     $time2 = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
                                                     for ($i = 0; $i < count($time2) - 1; $i++) {
                                                     ?>
-
-                                                        <label for="timeslot"><input class="checkbox-nailer" type="radio" name="timeslot[]" <?php echo in_array($time2[$i], $startTime2) ? 'readonly disabled'  : $time[$i] ?> value="<?php echo $time[$i] ?>">
-                                                            <?php echo $time2[$i] ?> - <?php echo $time2[$i + 1] ?></label>
+                                                    <div class="content-nailer">
+                                                    <div class="dp">
+                                                        <div class="py">
+                                                        <label for="timeslot">
+                                                            <input class="option-input radio" type="radio" name="timeslot[]" 
+                                                                <?php echo in_array($time2[$i], $startTime2) ? 'readonly disabled'  : $time[$i] ?> value="<?php echo $time[$i] ?>">                               
+                                                                <?php echo $time2[$i] ?> - <?php echo $time2[$i + 1] ?>
+                                                            
+                                                        </label>
+                                                        </div>
+                                                    </div>
+                                                    </div>
                                                         <br>
                                                     <?php
-
                                                     }
                                                     $i++;
                                                     ?>
-
                                                 </div>
 
                                         </div>
@@ -309,12 +330,12 @@
                 <?php include('../model/main_model.php'); ?>
                 </div>
                 </form>
-
-                
             </div>
         </div>
     </div>
     <br>
+
+
 
         <div>
             <?php include('../footer.php'); ?>

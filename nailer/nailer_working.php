@@ -46,7 +46,7 @@
                             <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองลูกค้า</th>
                             <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
                             <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวม</th>
-                            <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> สถานะการทำงาน</th>
+                            <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> สถานะการทำงาน</th>
                         </tr>
                     </thead>
 
@@ -54,12 +54,14 @@
                         <?php
                         include('../conn/conn.php');
                         $nailer_id =  $_SESSION["nailer_id"];
-                        $book_id =  $_SESSION["book_id"];
+                        
                         $sql = "SELECT * FROM booking
                         INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
                         INNER JOIN customer ON booking.cus_id=customer.cus_id
-                        INNER JOIN nailer ON book_nail_detail.nailer_id=nailer.nailer_id where nailer.nailer_id = $nailer_id 
-                        group by booking.book_id order by book_nail_detail.nailer_id ";
+                        INNER JOIN nailer ON book_nail_detail.nailer_id=nailer.nailer_id 
+                        where nailer.nailer_id = $nailer_id 
+                        group by booking.book_id
+                        order by book_nail_detail.book_id desc ";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             $booking_id = $row["book_id"]; ?>
@@ -84,19 +86,31 @@
                                     $resultdetail = mysqli_query($conn, $sqldetail);
                                     while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                         
-                                        <img src="<?php echo $rowdetail['file']; ?>" width="70px"><br>
-                                        <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br>
+                                        <img src="<?php echo $rowdetail['file']; ?>" width="70px">
+                                        <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br><br>
                                         <!-- <b> รายละเอียด : </b><?php echo $rowdetail['detail']; ?><br> -->
                                     <?php } ?>
                                 </td>
 
                                 <td data-label="ราคา"><?php echo $row['total_price']; ?> บาท</td>
-                                <td data-label="สถานะการทำงาน"><?php if ($row['nailer_book'] == '1') {
-                                                                    echo 'ทำงานเสร็จสิ้น';
-                                                                } else { ?>
-                                        <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1">ยืนยัน</a>
-                                    <?php  }
-
+                                <td data-label="สถานะการทำงาน" class="working-success">
+                                        <?php 
+                                            if ($row['nailer_book'] == '0') {
+                                                echo '';
+                                        ?>
+                                            <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1" 
+                                            class="btn btn-outline-primary"><i class="bi bi-clock-history"></i> เริ่มการดำเนินงาน</a>
+                                        <?php } 
+                                            else if($row['nailer_book'] == '1'){ 
+                                                echo '<p class="success-work"><i class="bi bi-hourglass-split"></i> กำลังดำเนินงาน...</p>';
+                                        ?>  
+                                            
+                                            <a href="../conn/conn_worksuccess.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=2" 
+                                            id="success-con" class="btn btn-outline-success">ยืนยันการดำเนินงานเสร็จสิ้น</a>
+                                        <?php } 
+                                            else {
+                                         echo '<b class="success-con"><p><i class="bi bi-check-circle"></i> ดำเนินงานเสร็จสิ้น</p></b>';
+                                    }
                                     ?>
                                 </td>
 
@@ -111,7 +125,5 @@
         </div><br>
 
     </div>
-
 </body>
-
 </html>

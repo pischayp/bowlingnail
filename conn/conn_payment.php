@@ -4,6 +4,7 @@
     
     $book_id = $_GET['book_id'];
     $total_price = $_GET['price'];
+	$pay_type = $_POST['pay_type'];
     $slip_pic = pathinfo(basename($_FILES['upload']['name']), PATHINFO_EXTENSION);
 	if ($slip_pic != "") {
 		$new_image_name = 'img' .uniqid() . "." . $slip_pic;
@@ -22,7 +23,7 @@
 		$pic = $pro_image;
     }
    
-    mysqli_query($conn, "update booking set status_id = '1' , slip ='$pic', total_price = $total_price where book_id='$book_id' ");	
+    mysqli_query($conn, "update booking set status_id = '1' , slip ='$pic', total_price = $total_price , payment_status = $pay_type where book_id='$book_id' ");	
     header('location:../booking/book_success.php');
 
 ?>

@@ -181,6 +181,8 @@
             </div>
         
             <div class="col-4">
+            <form class="imgForm" action="../conn/conn_payment.php?book_id=<?php echo $book_id ?>&price=<?php echo $sumprice?>" 
+     method="post" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <div class="content">
@@ -188,11 +190,11 @@
                                 <div class="py">
                                 <p>ราคารวม <b><?php echo $sumprice; ?></b> บาท</p>
                                 <label>
-                                    <input type="radio" class="option-input radio" name="example" checked />
+                                    <input type="radio" class="option-input radio" value="0" name="pay_type" checked />
                                     ชำระเงินสด (ชำระผ่านทางร้าน)
                                 </label><br>
                                 <label>
-                                    <input type="radio" class="option-input radio" name="example" />
+                                    <input type="radio" class="option-input radio" value="1" name="pay_type" />
                                     ชำระผ่านการโอน (ชำระผ่านบัญชีธนาคาร)
                                 </label>
                                 </div>
@@ -249,8 +251,7 @@
         </div>
         <div class="col-1"></div>
     </div><br>
-    <form class="imgForm" action="../conn/conn_payment.php?book_id=<?php echo $book_id ?>&price=<?php echo $sumprice?>" 
-     method="post" enctype="multipart/form-data">
+    
 
         <!-- <div class="row">
             <div class="col-1"></div>
