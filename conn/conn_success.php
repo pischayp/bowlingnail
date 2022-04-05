@@ -2,7 +2,7 @@
 include('conn.php');
 session_start();
 $cus_id = $_SESSION['cus_id'];
-$boo_id = $_GET['book_id'];
+$book_id = $_GET['book_id'];
 
 $querysuccess = "SELECT * FROM booking where cus_id = $cus_id AND book_status = 0  ORDER BY book_id DESC LIMIT 1";
 $booksuccess = mysqli_query($conn, $querysuccess); 

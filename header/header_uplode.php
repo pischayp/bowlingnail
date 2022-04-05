@@ -60,6 +60,7 @@
     </div>
 </header><br><br><br><br>
 
+
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10">
@@ -74,37 +75,33 @@
         <div class="col-8" id="index_nailer">
             <div class="card mb-3" width="50%">
                 <div class="row g-0" id="profile_nailer">
-                    <?php
-                    include('../conn/conn.php');
-                    $query = mysqli_query($conn, "SELECT * from nailer
-                    where nailer_id = 1");
-                    while ($row = mysqli_fetch_array($query)) {
-                    ?>
+                     
                         <div class="col-1"></div>
                         <div class="col-md-4"><br>
                             <img src="../img/nail_uplode.png" width="250" height="250" />
                             <br><br>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="card-body">
                                 <br>
-                            <form action="#" enctype="multipart/form-data" method="POST">
+                            <form action="../conn/conn_cusfile.php" enctype="multipart/form-data" method="POST">
                                 <div class="row">
                                     <div class="col-5">
                                         <label>อัพโหลดลายเล็บ : </label><br>
                                     </div>
                                     <div class="col-7">
-                                        <input type="file" id="file" name="file">
+                                        <input type="file" id="cus_file" name="cus_file" accept="image/*" onchange="loadFile1(event)" required>
                                     </div><br>
 
                                     <div class="col-5">
                                         <label>เลือกประเภทลายเล็บ : </label><br>
                                     </div>
                                     <div class="col-7">
-                                        <select name="uplode_nail" id="uplode_nail" class="dropdown_leave" required>
+                                        <select name="nt_id" id="nt_id" class="dropdown_leave" required>
                                             <option value="" selected disabled>เลือกประเภทลายเล็บ</option>
-                                            <option value="เล็บมือ">ลายเล็บมือ</option>
-                                            <option value="เล็บเท้า">ลายเล็บเท้า</option>
+                                            <option value="1">ลายเล็บมือ</option>
+                                            <option value="2">ลายเล็บเท้า</option>
                                         </select>
                                     </div><br>
 
@@ -112,7 +109,7 @@
                                         <label>รายละเอียดเพิ่มเติม : </label><br>
                                     </div>
                                     <div class="col-7">
-                                        <textarea name="" id="" cols="25" rows="4"></textarea>
+                                        <textarea name="file_detail" id="" cols="25" rows="4"></textarea>
                                     </div><br>
 
                                     <div class="col-5">
@@ -122,16 +119,17 @@
                                 
                                     </div><br>
                                 </div>
-                                <a href=".." data-toggle="modal">
-                                    <button type="button" class="btn btn-warning btn-md" style="float: right;" type="button">
+                                
+                                    <button type="submit" class="btn btn-warning btn-md" style="float: right;" >
                                         ยืนยันการเลือกลายเล็บ / ประเมินราคาลายเล็บ</button>
-                                </a>
+                                
                             </form>
                             </div>
                         </div>
                         <div class="col-1"></div>
+                 
                     <?php
-                    }
+                    
                     ?>
                 </div>
             </div>
