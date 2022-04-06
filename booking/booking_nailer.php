@@ -197,13 +197,13 @@
                                                                         
                                                                             <!-- radio button /css ให้ดูหมือนกดไม่ได้ -->
                                                                             <input class="option-input radio"  type="radio" name="timeslot[]" 
-                                                                            <?php echo in_array($time[$i], $startTime) ? 'readonly disabled' : $time[$i] ?> value="<?php echo $time[$i] ?> ">
+                                                                            <?php echo in_array($time[$i], $startTime) ? 'readonly disabled' : $time[$i] ?> 
+                                                                                value="<?php echo $time[$i] ?> ">
                                                                             <?php if (in_array($time[$i], $startTime)) { ?>
-
                                                                                 <?php echo '<span class="non-clock">' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
-                                                                                                                                    } else {
-                                                                                                                                        echo '<span >' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
-                                                                                                                                    } ?>
+                                                                                    } else {
+                                                                                        echo '<span >' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
+                                                                                    } ?>
                                                                             <?php if (in_array($time[$i], $startTime)) { ?> 
                                                                                 <span class="non-work">(ไม่ว่าง)</span>
                                                                             <?php } ?>

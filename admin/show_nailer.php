@@ -82,15 +82,15 @@
                         ?>
                         <tbody class="header-table">
                             <tr>
-                                <td data-label="รหัสสมาชิก" width="15%"><?php echo $row['nailer_id']; ?></td>
-                                <td data-label="โปรไฟล์" width="15%">
+                                <td data-label="รหัสสมาชิก"><?php echo $row['nailer_id']; ?></td>
+                                <td data-label="โปรไฟล์">
                                     <img src="<?php echo $row["nailer_picture"] ?>" width="100%" />
                                 </td>
-                                <td data-label="ชื่อช่างทำเล็บ" width="20%"><?php echo $row['nailer_name']; ?></td>
-                                <td data-label="ชื่อ" width="20%"><?php echo $row['fname']; ?></td>
-                                <td data-label="นามสกุล" width="20%"><?php echo $row['lname']; ?></td>
-                                <td data-label="เบอร์โทรศัพท์" width="20%"><?php echo $row['nailer_tel']; ?></td>
-                                <td data-label="" width="15%">
+                                <td data-label="ชื่อช่างทำเล็บ"><?php echo $row['nailer_name']; ?></td>
+                                <td data-label="ชื่อ"><?php echo $row['fname']; ?></td>
+                                <td data-label="นามสกุล"><?php echo $row['lname']; ?></td>
+                                <td data-label="เบอร์โทรศัพท์"><?php echo $row['nailer_tel']; ?></td>
+                                <td data-label="">
                                     <span>
                                     <a href="#editprofilenailer<?php echo $row['nailer_id']; ?>" data-toggle="modal"
                                         class="btn btn-warning btn-md">
@@ -136,7 +136,7 @@
                         $sqlleave = "SELECT * FROM nailer 
                             INNER join nailer_leave on nailer.nailer_id =  nailer_leave.nailer_id 
                             INNER join type_leave on nailer_leave.leavestatus_id = type_leave.leavestatus_id 
-                            where type_leave.leavestatus_id = 3";
+                            where type_leave.leavestatus_id = 3 ";
                        $leave = mysqli_query($conn, $sqlleave);
                        while($row=mysqli_fetch_array($leave)){
                             ?>
@@ -144,7 +144,8 @@
                             <tr>
                                 <td data-label="ลำดับ"><?php echo $n ?></td>
                                 <td data-label="ชื่อช่างทำเล็บ"><?php echo $row['nailer_name']; ?></td>
-                                <td data-label="วันที่เริ่มการลา">
+                            
+                                <td data-label="วันที่เริ่มการลา">                                  
                                     <i class="bi bi-calendar3"></i>
                                     <?php echo $row['leave_begin']; ?>
                                 </td>
@@ -155,6 +156,7 @@
                                 <td data-label="การลางาน"><?php echo $row['leave_type']; ?></td>
                                 <td data-label="หมายเหตุการลา"><?php echo $row['leave_description']; ?></td>
                                 <td data-label="สถานะการลา">
+                                    
                                 <?php if($row['leavestatus_id']=='3') {
                                 ?>
                                     <p>รออนุมัติการลางาน..</p> 

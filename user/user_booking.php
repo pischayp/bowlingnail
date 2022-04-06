@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css.css">
     <link rel="stylesheet" href="../table.css">
     <link rel="stylesheet" href="../css_user.css">
+    <link rel="stylesheet" href="../table_card.css">
     <link rel="icon" type="image/x-icon" href="../img/bowling-logo.svg" />
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
@@ -43,12 +44,12 @@
         <div class="col-md-10">
             <table class="table table-striped table-hover">
                 <thead>
-                    <th width="30%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
-                    <th width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
-                </thead>
+                    <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
+                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
+                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
+                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
+                    <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
+                    </thead>
 
                 <tbody>
                     <?php
@@ -59,13 +60,12 @@
                         INNER JOIN nailer on book_nail_detail.nailer_id = nailer.nailer_id 
                         where booking.cus_id='$cus_id' 
                         group by booking.book_id
-                        Order by book_date DESC";
-
-                    $result = mysqli_query($conn, $query);
-                    while ($row = mysqli_fetch_array($result)) {
-                        $book_id = $row['book_id'];
-                       
-                    ?>
+                        Order by booking.book_id DESC";                         
+                           
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($result)) { 
+                            $book_id = $row['book_id'];               
+                        ?>
                         <tr>
                         
                             <td data-label="รายละเอียดสินค้า">
@@ -79,26 +79,17 @@
                                 $resultdetail = mysqli_query($conn, $sqldetail);
                                 while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                
-                                <?php
-                               
-                                    if ($rowdetail['ST_ID'] == 82) {
-                                        
+                                <?php                         
+                                    if ($rowdetail['ST_ID'] == 82) {                                       
                                     ?>
-                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
-                                    
+                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />                                   
                                     <?php
                                     } else {
                                     ?>
-                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
-                                       
+                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />                                      
                                     <?php
                                     }
-
-
-                                    ?>
-                                  
-                                   
-
+                                    ?>                                                               
                                     <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?>
                                     ( <?php echo $rowdetail['ns_name']; ?>,
                                     <?php echo $rowdetail['nt_name']; ?>,

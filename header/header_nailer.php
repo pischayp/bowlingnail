@@ -43,7 +43,7 @@
         }
         executeRating(ratingStars);
     </script> -->
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             var rating_data = 0;
             $('#add_review').click(function() {
@@ -160,7 +160,7 @@
                 })
             }
         });
-    </script>
+    </script> -->
     <style>
         .progress-label-left {
             float: left;
@@ -211,7 +211,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-2" id="btn-choose-nailer">
-                <p><i class="fas fa-id-card"></i> &nbsp;เลือกช่างทำเล็บ : </p>
+                <p><i class="fas fa-id-card"></i> &nbsp;ช่างทำเล็บ : </p>
             </div>
             <div class="col-6" id="btn_nailer">
                 <?php
@@ -221,15 +221,15 @@
                 while ($row = mysqli_fetch_array($query)) {
                 ?>
                     <ul>
-                        <li><a class="active" href="header_nailer.php">
+                        <!-- <li><a class="active" href="header_nailer.php">
                                 &nbsp;ช่างโบว์
                             </a>
-                        </li>
-                        &nbsp;&nbsp;
+                        </li> -->
+                        <!-- &nbsp;&nbsp;
                         <li><a href="header_nailer2.php">
                                 &nbsp;ช่างตุ๊ก
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 <?php } ?>
             </div>
@@ -276,6 +276,42 @@
             </div>
 
             <div class="col-5" id="index_nailer">
+                <div class="card mb-3">
+                    <div class="row g-0" id="profile_nailer">
+                        <?php
+                        include('../conn/conn.php');
+                        $query = mysqli_query($conn, "SELECT * from nailer
+                            where nailer_id = 2");
+                        while ($row = mysqli_fetch_array($query)) {
+                        ?>
+                            <div class="col-md-6"><br>
+                                <img src="<?php echo $row["nailer_picture"] ?>" width="240px" height="240px" />
+                                <br><br>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body"><br><br>
+                                    <h5 class="card-title"><i class="fas fa-id-card"></i>
+                                        &nbsp;&nbsp;<?php echo $row['nailer_name']; ?></h5>
+                                    <p class="card-text">ความถนัดของช่าง : <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-brush"></i>&nbsp;ถนัดด้านการเพ้นท์ลายเล็บ <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-brush"></i>&nbsp;ถนัดด้านการ <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="bi bi-brush"></i>&nbsp;ถนัดด้านการตัดหนัง
+                                    </p>
+                                </div><br>
+                                <div class="btn-profile">
+                                    <a href="#nailerport1<?php echo $row['nailer_id'] ?>" data-toggle="modal">
+                                        <i class="bi bi-journal-medical"></i>&nbsp;คลิ๊กเพื่อดูผลงานทั้งหมด</a>
+                                    <?php include('../model/modal_nailer_port.php'); ?>
+                                </div><br>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-5" id="index_nailer">
                 <div class="card mb-3" width="50%">
                     <div class="row g-0" id="profile_nailer">
 
@@ -334,7 +370,7 @@
                                 <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="one_star_progress"></div>
                             </div>
                             </p><br>
-                            <!-- <span>
+                            <span>
                                 <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">
                                     <button type="button" name="add_review" id="add_review" >
                                     <i class="bi bi-star-fill"></i> ให้คะแนน (Reivew)
@@ -342,18 +378,18 @@
                                 </a>
                                 <?php include('../model/modal_review.php'); ?>
                             </span><br> -->
-                        </div>
+                        <!-- </div>
                     </div>
                 </div>
-            </div>
+            </div>  -->
 
             <div class="col-1"></div>
-        </div><br>
+        </div>
 
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8" id="btn-choose-nailer">
-                <i class="bi bi-chat-text"></i>&nbsp;รีวิวช่างทำเล็บจากลูกค้า
+                <i class="bi bi-chat-text"></i>&nbsp;ผลงานของช่างทำเล็บ
                 <hr>
 
                 <!-- <div class="btn-review">

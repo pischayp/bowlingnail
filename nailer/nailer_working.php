@@ -23,9 +23,7 @@
 
 
 </head>
-
 <body>
-
     <div class="container--fluid" id="header_nailer">
         <div class="row">
             <div class="col-1"></div>
@@ -69,10 +67,10 @@
 
                             <tr>
                                 <td data-label="ข้อมูลลูกค้า" class="icon-data">
-                                    <b><i class="bi bi-journal-check"></i> รหัสการจอง : </b> <?php echo $row['book_id']; ?><br>
-                                    <b><i class="bi bi-person"></i> ชื่อลูกค้า : </b> <?php echo $row['username']; ?> <br>
-                                    <b><i class="bi bi-calendar2-week"></i> วันที่จอง : </b> <?php echo $row['date_add']; ?> <br>
-                                    <b><i class="bi bi-clock"></i> เวลาที่จอง : </b> <?php echo $row['timeslots']; ?>
+                                    <i class="bi bi-journal-check"></i> รหัสการจอง : <b> <?php echo $row['book_id']; ?> </b><br>
+                                    <i class="bi bi-person"></i> ชื่อลูกค้า : <b> <?php echo $row['username']; ?> </b><br>
+                                    <i class="bi bi-calendar2-week"></i> วันที่จอง : <b> <?php echo $row['date_add']; ?> </b><br>
+                                    <i class="bi bi-clock"></i> เวลาที่จอง : <b> <?php echo $row['timeslots']; ?> </b>
                                 </td>
 
                                 <td data-label="รายละเอียดสินค้า">
@@ -105,27 +103,27 @@
 
                                ?>
                                         
-                                       
-                                        <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br><br>
+                                        
+                                        สินค้า : <b><?php echo $rowdetail['name']; ?></b><br>
                                         <!-- <b> รายละเอียด : </b><?php echo $rowdetail['detail']; ?><br> -->
                                     <?php } ?>
                                 </td>
 
-                                <td data-label="ราคา"><?php echo $row['total_price']; ?> บาท</td>
+                                <td data-label="ราคา"> <b><?php echo $row['total_price']; ?> </b>บาท</td>
                                 <td data-label="สถานะการทำงาน" class="working-success">
                                         <?php 
                                             if ($row['nailer_book'] == '0') {
                                                 echo '';
                                         ?>
                                             <a href="../conn/conn_working.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=1" 
-                                            class="btn btn-outline-primary"><i class="bi bi-clock-history"></i> เริ่มการดำเนินงาน</a>
+                                            id="success-start" class="btn btn-outline-primary"><i class="bi bi-clock-history"></i> เริ่มการดำเนินงาน</a>
                                         <?php } 
                                             else if($row['nailer_book'] == '1'){ 
                                                 echo '<p class="success-work"><i class="bi bi-hourglass-split"></i> กำลังดำเนินงาน...</p>';
                                         ?>  
                                             
                                             <a href="../conn/conn_worksuccess.php?book_id=<?php echo $row["book_id"] ?>&nailer_book=2" 
-                                            id="success-con" class="btn btn-outline-success">ยืนยันการดำเนินงานเสร็จสิ้น</a>
+                                            id="success-con" class="btn btn-outline-warning">ยืนยันการดำเนินงาน</a>
                                         <?php } 
                                             else {
                                          echo '<b class="success-con"><p><i class="bi bi-check-circle"></i> ดำเนินงานเสร็จสิ้น</p></b>';

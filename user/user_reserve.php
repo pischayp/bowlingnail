@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css.css">
     <link rel="stylesheet" href="../table.css">
     <link rel="stylesheet" href="../css_user.css">
+    <link rel="stylesheet" href="../table_card.css">
     <link rel="icon" type="image/x-icon" href="../img/bowling-logo.svg" />
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
@@ -49,12 +50,12 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <!-- <th width="10%"><i class="bi bi-circle-fill"></i> รูปสินค้า</th> -->
-                        <th width="30%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
+                        <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
                         <!-- <th width="20%">รายละเอียด</th> -->
-                        <!-- <th width="15%">ประเภทและรูปแบบ</th> -->
-                        <th width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
-                        <th width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
-                        <th width="10%"><i class="bi bi-chat-dots"></i> รีวิวที่นี่</th>
+                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
+                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
+                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
+                        <!-- <th scope="col" width="10%"><i class="bi bi-chat-dots"></i> รีวิวที่นี่</th> -->
         
                     </thead>
 
@@ -64,8 +65,11 @@
                         $cus_id =  $_SESSION["cus_id"];
                         include('../conn/conn.php');
                         $query=  "SELECT * FROM booking 
+                        inner join book_nail_detail on book_nail_detail.book_id=booking.book_id
+                        inner join nailer on book_nail_detail.nailer_id=nailer.nailer_id
                         where booking.cus_id='$cus_id'
-                        ";                         
+                        group by booking.book_id
+                        Order by booking.book_id DESC";                         
                            
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($result)) { 
@@ -109,24 +113,25 @@
                                     <?php echo $rowdetail['nt_name']; ?>)<br>
                                 <?php } ?>
                             </td>
-                            <td>
+                            <td data-label="ช่างทำเล็บ">
+                                <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['nailer_name']; ?></b>
+                            </td>
+                            <td data-label="วันและเวลาที่จอง">
                                 <b class="user_word"><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
                                 <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
                                 
                             </td>
-                            <td>
+                            <td data-label="ราคารวมทั้งหมด">
                             <!-- <?php echo $row['book_id']; ?> -->
                                 <b class="user_word"><?php echo $row['total_price']; ?></b> บาท</td>
-                            <td>
+                            <!-- <td data-label="รีวิว">
                             <span>
-                                <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">
-                                    <!-- <button type="button" name="add_review" id="add_review" > -->
-                                    <i class="bi bi-star-fill"></i> ให้คะแนน
-                                    <!-- </button> -->
+                                <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">                                   
+                                    <i class="bi bi-star-fill"></i> ให้คะแนน                                   
                                 </a>
                                 <?php include('../model/modal_review.php'); ?>
                             </span>                                
-                            </td>
+                            </td> -->
                         </tr>
                         <?php
                         }                
