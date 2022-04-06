@@ -65,6 +65,7 @@
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             $booking_id = $row["book_id"]; ?>
+                            
 
                             <tr>
                                 <td data-label="ข้อมูลลูกค้า" class="icon-data">
@@ -79,14 +80,32 @@
                                     <?php
                                    
                                     $sqldetail = "SELECT * FROM book_nail_detail
-                            INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
-                            INNER JOIN service_item ON book_nail_detail.ST_ID=service_item.ST_ID 
-                            INNER JOIN service_type ON book_nail_detail.S_ID=service_type.S_ID 
-                            where book_nail_detail.book_id = $booking_id";
+                                    INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
+                                    INNER JOIN service_item on book_nail_detail.st_id = service_item.st_id  
+                                    INNER JOIN nail_set on nail_set.ns_id = service_item.ns_id 
+                                    INNER JOIN nail_type on nail_type.nt_id = service_item.nt_id  
+                                    where book_nail_detail.book_id = $booking_id";
                                     $resultdetail = mysqli_query($conn, $sqldetail);
                                     while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
+                                    <?php
+                               
+                               if ($rowdetail['ST_ID'] == 82) {
+                                   
+                               ?>
+                                   <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
+                               
+                               <?php
+                               } else {
+                               ?>
+                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
+                                  
+                               <?php
+                               }
+
+
+                               ?>
                                         
-                                        <img src="<?php echo $rowdetail['file']; ?>" width="70px">
+                                       
                                         <b> สินค้า : </b><?php echo $rowdetail['name']; ?><br><br>
                                         <!-- <b> รายละเอียด : </b><?php echo $rowdetail['detail']; ?><br> -->
                                     <?php } ?>
