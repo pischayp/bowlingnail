@@ -461,8 +461,8 @@ strong{
     right: 0;
     bottom: 0;
     left: 0;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     transition: all 0.15s ease-out 0s;
     background: #cbd1d8;
     border: none;
@@ -481,11 +481,11 @@ strong{
     background: #0033FF;
   }
   .option-input:checked::before {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display:flex;
     content: '\f00c';
-    font-size: 25px;
+    font-size: 20px;
     font-weight:bold;
     position: absolute;
     align-items:center;
