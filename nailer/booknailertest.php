@@ -135,12 +135,12 @@
                                                         <img src="<?php echo $row1['nailer_picture'] ?>" class="img-fluid rounded-start" width="90%">
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-8">
                                                     <p class="card-text">
-                                                    <p class="name-nailer">
-                                                        <b><i class="fas fa-id-card"></i> &nbsp;&nbsp;<?php echo $row1['nailer_name']; ?></b>
+                                                    <p class="name">
+                                                        <i class="fas fa-id-card"></i> &nbsp;&nbsp;<?php echo $row1['nailer_name']; ?>
                                                     </p>
-                                        
+                                                    <a href="..">กดเพื่อดูโปรไฟล์ช่างทำเล็บ</a>
                                                     </p>
                                                     </ /?php $arraytmend=array(); $arraytmstr=array(); $qr_allDetail=mysqli_query($conn, "select * from book_nail_detail WHERE nailer_id = $nailerid AND date_add = '$date'" ); while ($row_allDetail=mysqli_fetch_array($qr_allDetail)) { $allDetaildate=$row_allDetail['date_add']; $timestart=date("H", strtotime($row_allDetail['time_start'])); $timeend=date("H", strtotime($row_allDetail['time_end'])); array_push($arraytmstr, $timestart); array_push($arraytmend, $timeend); } ?>
                                                     <div class="content-nailer">
@@ -148,7 +148,7 @@
                                                             <div class="py">
                                                                 <input class="option-input radio" name="radionailer" type="radio" 
                                                                         value="<?php echo $row1['nailer_id'] ?>" checked="checked" required/>
-                                                                        เลือกช่างทำเล็บ
+                                                                        &nbsp;&nbsp; เลือกช่างทำเล็บ
                                                                 <br>
                                                             </div>
                                                         </div>
@@ -156,10 +156,14 @@
                                                 </div>
                                                 <div class="col-4">
                                                         <label class="label nailer1" for="clocknailer1">
-                                                            <b><i class="bi bi-alarm"></i>
-                                                            &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ : </b>
+                                                            <i class="bi bi-alarm"></i>
+                                                            &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
                                                         </label>
-                                                        <br>
+                                                        <!-- <input class="clocknailer1" id="clocknailer1" /> -->
+                                                    
+                                                        <!-- <label class="timenailer"><i class="bi bi-alarm"></i>
+                                                            &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
+                                                        </label><br> -->
 
                                                         <?php
                                                         $startTime = [];
@@ -181,6 +185,7 @@
                                                             }
                                                         }
                                                         // print_r($startTime);
+
                                                         // while($row=mysqli_fetch_assoc($result)){
                                                         //     print_r($row);
                                                         // }
@@ -194,18 +199,21 @@
                                                                 <div class="dp">
                                                                     <div class="option">
                                                                         <label for="timeslot">
-                                                                        
-                                                                            <!-- radio button /css ให้ดูหมือนกดไม่ได้ -->
+                                                                            <!-- radio button /css ให้กูเหมือนกดไม่ได้g -->
                                                                             <input class="option-input radio"  type="radio" name="timeslot[]" 
                                                                             <?php echo in_array($time[$i], $startTime) ? 'readonly disabled' : $time[$i] ?> value="<?php echo $time[$i] ?> ">
                                                                             <?php if (in_array($time[$i], $startTime)) { ?>
 
                                                                                 <?php echo '<span class="non-clock">' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
                                                                                                                                     } else {
-                                                                                                                                        echo '<span >' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
+                                                                                                                                        echo '<span>' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
                                                                                                                                     } ?>
-                                                                            <?php if (in_array($time[$i], $startTime)) { ?> 
+
+                                                                            <!-- <span class="non-clock"> -->
+                                                                            <?php if (in_array($time[$i], $startTime)) { ?>
+                                                                                <!-- </span> -->
                                                                                 <span class="non-work">(ไม่ว่าง)</span>
+                                                                                <!-- css radio button -->
                                                                             <?php } ?>
                                                                             <!-- radio button ที่ลูกค้าเลือกเวลาไปแล้ว เขียนไม่ว่าง -->
                                                                         </label>
@@ -223,7 +231,82 @@
                                             }
                                             $n++
                                             ?>
-                                        </div>                           
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-4">
+                                                        <label class="label nailer1" for="clocknailer1">
+                                                            <i class="bi bi-alarm"></i>
+                                                            &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
+                                                        </label>
+                                                        <!-- <input class="clocknailer1" id="clocknailer1" /> -->
+                                                    
+                                                        <!-- <label class="timenailer"><i class="bi bi-alarm"></i>
+                                                            &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
+                                                        </label><br> -->
+
+                                                        <?php
+                                                        $startTime = [];
+                                                        // $select = ["10:00-11:00", "16:00-17:00"];
+                                                        $select_date = $_GET['bookingdate'];
+                                                        $chknailer = $row1['nailer_id'];
+                                                        $sql = "SELECT * from booking
+                                                        INNER JOIN book_nail_detail ON book_nail_detail.book_id=booking.book_id
+                                                        where booking.book_date = '$select_date' and  book_nail_detail.nailer_id=$chknailer ";
+                                                        // $query = '10:00-11:00,16:00-17:00';
+                                                        $result_emp1 = mysqli_query($conn, $sql);
+                                                        while ($query_emp1 = mysqli_fetch_assoc($result_emp1)) {
+                                                            $chktmslot = $query_emp1['timeslots'];
+                                                            $select = explode(",", $chktmslot);
+                                                            // print_r($select);
+                                                            foreach ($select as $element) {
+                                                                // echo $element;
+                                                                array_push($startTime, explode("-", $element)[0]);
+                                                            }
+                                                        }
+                                                        // print_r($startTime);
+
+                                                        // while($row=mysqli_fetch_assoc($result)){
+                                                        //     print_r($row);
+                                                        // }
+                                                        // print_r($select);
+                                                        // print_r($startTime);
+                                                        $time = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
+                                                        for ($i = 0; $i < count($time) - 1; $i++) {
+                                                        ?>
+                                                        <!-- <input class="clocknailer1" id="clocknailer1" type="radio" /> -->
+                                                            <div class="content-nailer">
+                                                                <div class="dp">
+                                                                    <div class="option">
+                                                                        <label for="timeslot">
+                                                                            <!-- radio button /css ให้กูเหมือนกดไม่ได้g -->
+                                                                            <input class="option-input radio"  type="radio" name="timeslot[]" 
+                                                                            <?php echo in_array($time[$i], $startTime) ? 'readonly disabled' : $time[$i] ?> value="<?php echo $time[$i] ?> ">
+                                                                            <?php if (in_array($time[$i], $startTime)) { ?>
+
+                                                                                <?php echo '<span class="non-clock">' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
+                                                                                                                                    } else {
+                                                                                                                                        echo '<span>' . $time[$i] ?> - <?php echo $time[$i + 1] . '</span>';
+                                                                                                                                    } ?>
+
+                                                                            <!-- <span class="non-clock"> -->
+                                                                            <?php if (in_array($time[$i], $startTime)) { ?>
+                                                                                <!-- </span> -->
+                                                                                <span class="non-work">(ไม่ว่าง)</span>
+                                                                                <!-- css radio button -->
+                                                                            <?php } ?>
+                                                                            <!-- radio button ที่ลูกค้าเลือกเวลาไปแล้ว เขียนไม่ว่าง -->
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                        <?php
+                                                        }
+                                                        $i++;
+                                                        ?>
+                                                    
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -250,30 +333,40 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <p class="card-text">
-                                                    <p class="name-nailer">
-                                                        <b><i class="fas fa-id-card"></i> &nbsp;&nbsp;<?php echo $row2['nailer_name']; ?></b>
+                                                    <p class="name">
+                                                        <i class="fas fa-id-card"></i> &nbsp;&nbsp;<?php echo $row2['nailer_name']; ?>
                                                     </p>
+                                                    <a href="..">กดเพื่อดูโปรไฟล์ช่างทำเล็บ</a>
                                                     </p>
                                                     </ /?php $arraytmend=array(); $arraytmstr=array(); $qr_allDetail=mysqli_query($conn, "select * from book_nail_detail WHERE nailer_id = $nailerid AND date_add = '$date'" ); while ($row_allDetail=mysqli_fetch_array($qr_allDetail)) { $allDetaildate=$row_allDetail['date_add']; $timestart=date("H", strtotime($row_allDetail['time_start'])); $timeend=date("H", strtotime($row_allDetail['time_end'])); array_push($arraytmstr, $timestart); array_push($arraytmend, $timeend); } ?>
                                                     <div class="content-nailer">
                                                         <div class="dp">
-                                                            <div class="py">                                                           
+                                                            <div class="py">
+                                                            
                                                             <input class="option-input radio" name="radionailer" id="show-nailer2" type="radio" 
                                                                         value="<?php echo $row1['nailer_id'] ?>" required/>
                                                                 <label class="label" for="show-nailer2">เลือกช่างทำเล็บ</label>
-                                                                <br>                                                                                                                      
+                                                                <br>
+
+                                                                <!-- <input class="option-input radio"  type="radio" name="radionailer" 
+                                                                    value="<?php echo $row2['nailer_id'] ?>" required />
+                                                                    <label>&nbsp;&nbsp; เลือกช่างทำเล็บ </label> -->
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <label class="label nailer2" for="clocknailer2">
-                                                        <b><i class="bi bi-alarm"></i>
-                                                        &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ : </b>
+                                                        <i class="bi bi-alarm"></i>
+                                                        &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
                                                     </label>
                                                         <br>
-
+                                                    <!-- <label class="timenailer" for="show-clock2">
+                                                        <i class="bi bi-alarm"></i> &nbsp;&nbsp;เลือกเวลาของช่างทำเล็บ :
+                                                    </label><br> -->
                                                     <?php
+
                                                     $startTime2 = [];
                                                     // $select = ["10:00-11:00", "16:00-17:00"];
                                                     $chknailer2 = $row2['nailer_id'];
@@ -303,7 +396,7 @@
                                                             <div class="dp">
                                                                 <div class="option">
                                                                     <label for="timeslot">
-        
+                                                                        
                                                                         <input class="option-input radio" id="clocknailer2" type="radio" name="timeslot[]" 
                                                                         <?php echo in_array($time2[$i], $startTime2) ?
                                                                             'readonly disabled'  : $time[$i] ?> value="<?php echo $time[$i] ?>">
