@@ -101,12 +101,7 @@
                                         </select>
                                     </div><br>
 
-                                    <div class="col-5">
-                                        <label>รายละเอียดเพิ่มเติม : </label><br>
-                                    </div>
-                                    <div class="col-7">
-                                        <textarea name="file_detail" id="" cols="25" rows="4"></textarea>
-                                    </div><br>
+                                   
 
                                     <div class="col-5">
                                         <label>ราคาที่ต้องมัดจำ : 129฿</label><br>
