@@ -86,7 +86,7 @@ include("../conn/conn.php.php");
       ?>
   <?php
   $month_arrayth = array('มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม');
-  $sql_price = "SELECT * , SUM(purchase_price) FROM purchaseorder
+  $sql_price = "SELECT * , SUM(total_price) FROM booking
 WHERE purchaseorder.purchase_status='รับสินค้าแล้ว' OR purchaseorder.purchase_status='แก้บิล'
 GROUP BY purchaseorder.purchase_id  ORDER BY SUM(purchase_price)";
   $resultprice = mysqli_query($conn, $sql_price);
