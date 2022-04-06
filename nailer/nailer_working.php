@@ -23,9 +23,7 @@
 
 
 </head>
-
 <body>
-
     <div class="container--fluid" id="header_nailer">
         <div class="row">
             <div class="col-1"></div>
