@@ -137,14 +137,28 @@
 
                             while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                 <tr>
-                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>">
+                                <?php
+                                if ($rowdetail['ST_ID'] == '82') {
+                                ?>
+                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['cus_file'] ?>"></th>
+                                    <?php
+                                } else {
+                                    ?>
+
+                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"></th>
+                                    <?php
+                                }
+
+
+                                    ?>
+                                    <!-- <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"> -->
                                     <td width="10%"><?php echo $rowdetail['name'] ?></td>
                                     <!-- <td width="10%"><?php echo $rowdetail['detail'] ?></td> -->
                                     <td width="10%"><?php echo $rowdetail['ns_name'] ?></td>
                                     <td width="10%"><?php echo $rowdetail['date_add'] ?></td>
                                     <td width="20%"><?php echo $rowdetail['timeslots'] ?></td>
                                     <td width="10%"><?php echo $rowdetail['nailer_name'] ?></td>
-                                    <td width="10%"><?php echo $rowdetail['cus_price'] ?></td>
+                                    <td width="10%"><?php echo $rowdetail['price'] ?></td>
                                 </tr>
                             <?php
                             }

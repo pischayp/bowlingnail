@@ -105,7 +105,25 @@
                                     $resultdetail = mysqli_query($conn, $sqldetail);
                                     while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                     
-                                    <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
+                                <?php
+                               
+                               if ($rowdetail['ST_ID'] == 82) {
+                                   
+                               ?>
+                                   <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
+                               
+                               <?php
+                               } else {
+                               ?>
+                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
+                                  
+                               <?php
+                               }
+
+
+                               ?>
+                             
+                                    
                                     <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
                                         (<?php echo $rowdetail['ns_name']; ?>,                                         
                                         <?php echo $rowdetail['price']; ?> บาท)<br>

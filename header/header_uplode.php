@@ -109,16 +109,16 @@
                                     </div><br>
 
                                     <div class="col-5">
-                                        <label>ราคาที่ต้องมัดจำ : </label><br>
+                                        <label>ราคาที่ต้องมัดจำ : 129฿</label><br>
                                     </div>
                                     <div class="col-7">
 
                                     </div><br>
                                 </div>
-
+                                <br>
                                 <button type="submit" class="btn btn-warning btn-md" style="float: right;">
                                     ยืนยันการเลือกลายเล็บ / ประเมินราคาลายเล็บ</button>
-                                
+
                             </form>
                         </div>
                     </div>

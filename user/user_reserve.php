@@ -72,17 +72,38 @@
                             $book_id = $row['book_id'];               
                         ?>
                         <tr>
+                            
                             <td data-label="รายละเอียดสินค้า">
                             <?php
                                 $sqldetail = "SELECT * FROM book_nail_detail
                                 INNER JOIN booking ON book_nail_detail.book_id=booking.book_id 
-                                INNER JOIN service_item on book_nail_detail.st_id = service_item.st_id  
+                                INNER JOIN service_item on book_nail_detail.ST_ID = service_item.ST_ID 
                                 INNER JOIN nail_set on nail_set.ns_id = service_item.ns_id 
                                 INNER JOIN nail_type on nail_type.nt_id = service_item.nt_id  
-                                where book_nail_detail.book_id = $book_id";
+                                where book_nail_detail.book_id = $book_id ORDER BY book_nail_detail.book_id DESC";
                                 $resultdetail = mysqli_query($conn, $sqldetail);
                                 while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
-                                <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
+                                
+                                <?php
+                               
+                                    if ($rowdetail['ST_ID'] == 82) {
+                                        
+                                    ?>
+                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
+                                    
+                                    <?php
+                                    } else {
+                                    ?>
+                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
+                                       
+                                    <?php
+                                    }
+
+
+                                    ?>
+                                  
+                                
+                                
                                 <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?> 
                                     (<?php echo $rowdetail['ns_name']; ?>, 
                                     <?php echo $rowdetail['nt_name']; ?>)<br>
