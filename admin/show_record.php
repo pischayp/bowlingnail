@@ -78,20 +78,21 @@
                             <?php            
                             include('../conn/conn.php');
                             $query=mysqli_query($conn,"SELECT * from booking 
-                           
+                            INNER JOIN book_nail_detail on book_nail_detail.book_id=booking.book_id
+                            INNER JOIN nailer on book_nail_detail.nailer_id=nailer.nailer_id
                             INNER JOIN customer ON booking.cus_id=customer.cus_id
                             WHERE booking.book_id
                             group by booking.book_id
-                            Order by book_id DESC ") ;
+                            Order by booking.book_id DESC ") ;
                             while($row=mysqli_fetch_array($query)){
                                 $book_id = $row['book_id'];   
                             ?>
                             <tr>
                                 <td data-label="รายละเอียดการจอง">
-                                    <i class="bi bi-journal-check"></i><b> รหัสการจอง : </b><?php echo $row['book_id']; ?><br>
-                                    <i class="bi bi-person"></i><b> ชื่อลูกค้า : </b><?php echo $row['username']; ?><br>
-                                    <i class="bi bi-calendar-check"></i><b> วันที่จอง : </b><?php echo $row['book_date']; ?><br>
-                                    <i class="bi bi-alarm"></i><b> เวลาที่จอง : </b><?php echo $row['timeslots']; ?>
+                                    <i class="bi bi-journal-check"></i> รหัสการจอง : <b><?php echo $row['book_id']; ?></b><br>
+                                    <i class="bi bi-person"></i> ชื่อลูกค้า : <b><?php echo $row['username']; ?></b><br>
+                                    <i class="bi bi-calendar-check"></i> วันที่จอง : <b><?php echo $row['book_date']; ?></b><br>
+                                    <i class="bi bi-alarm"></i> เวลาที่จอง : <b><?php echo $row['timeslots']; ?></b>
                                 </td>
 
                                 <td data-label="รายละเอียดสินค้า">
@@ -106,9 +107,10 @@
                                     while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                     
                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
-                                    <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
+                                    สินค้า : <b><?php echo $rowdetail['name']; ?> 
                                         (<?php echo $rowdetail['ns_name']; ?>,                                         
-                                        <?php echo $rowdetail['price']; ?> บาท)<br>
+                                        <?php echo $rowdetail['price']; ?> บาท) </b>
+                                        <br>
 
                                     <?php } ?>
                                 </td>

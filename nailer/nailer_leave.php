@@ -164,8 +164,8 @@
                     <thead class="header-table">
                         <tr>
                             <!-- <th scope="col" width="5%">ลำดับ</th> -->
-                            <th scope="col" width="10%">ชื่อช่างทำเล็บ</th>
-                            <th scope="col" width="15%">วันที่เริ่มและสิ้นสุดการลา</th>
+                            <!-- <th scope="col" width="10%">ชื่อช่างทำเล็บ</th> -->
+                            <th scope="col" width="20%">วันที่เริ่มและสิ้นสุดการลา</th>
                             <th scope="col" width="10%">การลางาน</th>
                             <th scope="col" width="20%">หมายเหตุการลา</th>
                             <th scope="col" width="15%">สถานะการทำงาน</th>
@@ -183,27 +183,31 @@
                         <tbody>
                             <tr>
                             <!-- <td scope="row" data-label="ลำดับ"><?php echo $n ?></td> -->
-                            <td data-label="ชื่อช่างทำเล็บ" class="des"><?php echo $row_leave['nailer_name'] ?></td>
-                            <td data-label="วันที่เริ่มและสิ้นสุดการลา"><?php
+                            <!-- <td data-label="ชื่อช่างทำเล็บ" class="des"><?php echo $row_leave['nailer_name'] ?></td> -->
+                            <td data-label="วันที่เริ่มและสิ้นสุดการลา">
+                                <i class="bi bi-calendar3"></i>
+                                <?php
                                                     if ($row_leave['leave_begin'] == $row_leave['leave_end']) {
                                                         echo $row_leave['leave_begin'];
                                                     } else if ($row_leave['leave_end'] == '0000-00-00') {
-                                                        echo $row_leave['leave_begin'];
+                                                        echo '<b>'.$row_leave['leave_begin']. '</b>';
                                                     } else {
-                                                        echo $row_leave['leave_begin'] . '<br> จนถึง ' . $row_leave['leave_end'];
+                                                        echo '<b>' . $row_leave['leave_begin'] . '</b> จนถึง <b>' . $row_leave['leave_end']. '</b>';
                                                     } ?>
                             </td>
-                            <td data-label="การลางาน"><?php echo $row_leave['leave_type'] ?></td>
+                            <td data-label="การลางาน">
+                                <?php echo $row_leave['leave_type'] ?>
+                            </td>
                             <td data-label="หมายเหตุการลา" class="description"><?php echo $row_leave['leave_description'] ?></td>
                             <!-- text overflow กำหนดให้ตัวหนังสือไม่เกิน -->
                             <td data-label="สถานะ">
                                 <?php
                                 if ($row_leave['leavestatus_id'] == 1) {
-                                    echo "<span class='success-con'><i class='bi bi-check-circle-fill'></i>&nbsp;". $row_leave['leave_status'] . "</span>";
+                                    echo "<span class='success-con'><b><i class='bi bi-check-circle-fill'></i>&nbsp;". $row_leave['leave_status'] . "</b></span>";
                                 } else if ($row_leave['leavestatus_id'] == 2) {
-                                    echo "<span class='success-fail'><i class='bi bi-x-circle-fill'></i>&nbsp;" . $row_leave['leave_status'] . "</span>";
+                                    echo "<span class='success-fail'><b><i class='bi bi-x-circle-fill'></i>&nbsp;" . $row_leave['leave_status'] . "</b></span>";
                                 } else {
-                                    echo "<span class='success-wait'><i class='bi bi-clock-fill'></i>&nbsp;รอการตรวจสอบ</span>";
+                                    echo "<span class='success-wait'><b><i class='bi bi-clock-fill'></i>&nbsp;รอการตรวจสอบ </b></span>";
                                 }
                                 $n++
                                 ?>

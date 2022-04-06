@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css.css">
     <link rel="stylesheet" href="../table.css">
     <link rel="stylesheet" href="../css_user.css">
+    <link rel="stylesheet" href="../table_card.css">
     <link rel="icon" type="image/x-icon" href="../img/bowling-logo.svg" />
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
@@ -49,11 +50,11 @@
         <div class="col-md-10">
             <table class="table table-striped table-hover">
                 <thead>
-                    <th width="30%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
-                    <th width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
-                    <th width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
+                    <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
+                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
+                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
+                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
+                    <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
                     </thead>
 
                     <tbody>                        
@@ -65,7 +66,7 @@
                         INNER JOIN nailer on book_nail_detail.nailer_id = nailer.nailer_id 
                         where booking.cus_id='$cus_id' 
                         group by booking.book_id
-                        Order by book_date DESC";                         
+                        Order by booking.book_id DESC";                         
                            
                         $result = mysqli_query($conn, $query);
                         while ($row = mysqli_fetch_array($result)) { 
@@ -83,10 +84,10 @@
                                 $resultdetail = mysqli_query($conn, $sqldetail);
                                 while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                 <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px"/>
-                                <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?> 
+                                 สินค้า : <b class="user_word"><?php echo $rowdetail['name']; ?> 
                                     ( <?php echo $rowdetail['ns_name']; ?>, 
                                     <?php echo $rowdetail['nt_name']; ?>, 
-                                    <?php echo $rowdetail['price']; ?> บาท )<br>
+                                    <?php echo $rowdetail['price']; ?> บาท )</b><br>
                                 <?php } ?>
                             </td>
                             <td data-label="วันและเวลาที่จอง">

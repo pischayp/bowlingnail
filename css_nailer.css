@@ -64,7 +64,7 @@
     width: 15em;
 }
 .success-con b{
-    color: green;
+    color: #339966;
     font-size: 14px;
 }
 .success-wait i{
@@ -77,6 +77,24 @@
     color: gray;
     font-size: 14px;
     margin-bottom: 0px;
+}
+.working-success #success-start{
+    width: 220px;
+    color: #6600FF;
+}
+.working-success #success-start:hover{
+    width: 220px;
+    color: #fff;
+    background-color: #6600FF;
+}
+.working-success #success-con{
+    width: 220px;
+    color: #FF9900;
+}
+.working-success #success-con:hover{
+    width: 220px;
+    color: #fff;
+    background-color: #FF9900;
 }
 
 #profile_nailer{
