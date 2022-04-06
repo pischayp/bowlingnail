@@ -1,0 +1,26 @@
+.subdashrow1{
+    padding: 5%;
+    margin: 0 auto;
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}
+.bar{
+    width: 100%;
+    height: 90vh !important;
+}
+.card{
+    padding: 5%;
+    margin: 0 auto;
+    width: 60%;
+    height: 25%;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: #9FB4FF !important;
+    color: white;
+}
+.pie{
+    width: 70%; 
+    margin: 0 auto;
+   
+}
