@@ -65,22 +65,22 @@
             <div class="col-2"></div>
         </div><br><br><br>
     </div>
-        <div class="row" id="cart_booking">
-            <div class="col-1"></div>
-            <div class="col-lg-10" id="cartbook">
-                <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; ตะกร้าสินค้า 
-                <hr>
-            </div>
-            <!-- <div class="col-lg-5" id="cartbook">
+    <div class="row" id="cart_booking">
+        <div class="col-1"></div>
+        <div class="col-lg-10" id="cartbook">
+            <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; ตะกร้าสินค้า
+            <hr>
+        </div>
+        <!-- <div class="col-lg-5" id="cartbook">
                 <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; ตะกร้าสปามือและเท้า
                 <hr>
             </div> -->
-            <div class="col-1"></div>
-        </div><br>
+        <div class="col-1"></div>
+    </div><br>
 
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-lg-10">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-lg-10">
             <table class="table table-striped table-hover" id="table_booking">
                 <thead>
                     <th width="10%">รูปภาพ </th>
@@ -101,30 +101,46 @@
                     $numrow = mysqli_num_rows($resultselect);
                     if ($numrow > 0) {
                         $_SESSION['book_id'] = $rowselect['book_id'];
+
                         $sqldetail = "SELECT * FROM book_nail_detail INNER join service_item on service_item.ST_ID = book_nail_detail.ST_ID 
+                                        INNER join service_type on service_item.S_ID = service_type.S_ID
                                         INNER join nail_set on service_item.ns_id = nail_set.ns_id 
-                                        WHERE  book_nail_detail.book_id = $book_id";
+                                        WHERE  book_nail_detail.book_id = $book_id  ORDER BY book_nail_detail.bd_id DESC ";
                         $resultdetail = mysqli_query($conn, $sqldetail);
 
                         while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                             <tr>
-                                <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"></th>
-                                <td width="10%"><?php echo $rowdetail['name'] ?></td>
-                                <td width="20%"><?php echo $rowdetail['detail'] ?></td>
-                                <td width="10%"><?php echo $rowdetail['ns_name'] ?></td>
-                                <td width="10%"><?php echo $rowdetail['price'] ?></td>
-                                <td style="width:8%;">
-                                    <span>
-                                        <a href="#delbook<?php echo $rowdetail['bd_id']; ?>" data-toggle="modal" class="btn btn-danger">
-                                            <span class="glyphicon glyphicon-trash"></span>ลบ </a>
-                                        <?php include('../model/booking_model.php'); ?>
+                                <?php
+                                if ($rowdetail['ST_ID'] == '82') {
+                                ?>
+                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['cus_file'] ?>"></th>
+                                    <?php
+                                } else {
+                                    ?>
 
-                                    </span>
-                                </td>
+                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"></th>
+                                    <?php
+                                }
+
+
+                                    ?>
+
+                                    <td width="10%"><?php echo $rowdetail['name'] ?></td>
+                                    <td width="10%"><?php echo $rowdetail['S_name'] ?></td>
+
+                                    <td width="10%"><?php echo $rowdetail['ns_name'] ?></td>
+                                    <td width="10%"><?php echo $rowdetail['price'] ?></td>
+                                    <td style="width:8%;">
+                                        <span>
+                                            <a href="#delbook<?php echo $rowdetail['bd_id']; ?>" data-toggle="modal" class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span>ลบ </a>
+                                            <?php include('../model/booking_model.php'); ?>
+
+                                        </span>
+                                    </td>
                             </tr>
                     <?php
                         }
-                        
                     }
                     ?>
                 </tbody>
@@ -132,29 +148,29 @@
 
             </table>
             <br><br>
-            </div>
-            
-            
-            <div class="col-1"></div>
         </div>
 
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <button id="btnback" type="button" class="btn btn-secondary btn-md" disabled>ย้อนกลับ</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="booking_nailer.php">
-                        <button id="btnnext" type="button" class="btn btn-outline-danger btn-md" type="button"> หน้าถัดไป</button>
-                    </a>
-                </div>
+
+        <div class="col-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button id="btnback" type="button" class="btn btn-secondary btn-md" disabled>ย้อนกลับ</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="booking_nailer.php">
+                    <button id="btnnext" type="button" class="btn btn-outline-danger btn-md" type="button"> หน้าถัดไป</button>
+                </a>
             </div>
-            <div class="col-4"></div>
         </div>
+        <div class="col-4"></div>
+    </div>
 
-        <?php include('../model/main_model.php'); ?>
+    <?php include('../model/main_model.php'); ?>
 
-        <br><br>
+    <br><br>
     <div>
         <?php include('../footer.php'); ?>
     </div>
