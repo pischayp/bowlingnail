@@ -44,11 +44,12 @@
         <div class="col-md-10">
             <table class="table table-striped table-hover">
                 <thead>
-                    <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
-                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
-                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
-                    <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
-                    <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> สถานะการจอง</th>
+                    <th width="1%"></th>
+                    <th scope="col" width="30%"> ข้อมูล และรายละเอียดบริการ</th>
+                    <th scope="col" width="10%"> วันและเวลาที่จอง</th>
+                    <th scope="col" width="7%"> ช่างทำเล็บ</th>
+                    <th scope="col" width="13%"> ราคารวมทั้งหมด</th>
+                    <th scope="col" width="10%"> สถานะการจอง</th>
                     </thead>
 
                 <tbody>
@@ -67,7 +68,7 @@
                             $book_id = $row['book_id'];               
                         ?>
                         <tr>
-                        
+                            <td></td>                   
                             <td data-label="รายละเอียดสินค้า">
                                 <?php
                                 $sqldetail = "SELECT * FROM book_nail_detail
@@ -82,18 +83,23 @@
                                 <?php                         
                                     if ($rowdetail['ST_ID'] == 82) {                                       
                                     ?>
-                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />                                   
+                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
+                                        สินค้า : <b class="user_word"><?php echo $rowdetail['name']; ?>
+                                        ( <?php echo $rowdetail['ns_name']; ?>,
+                                        <?php echo $rowdetail['file_detail']; ?>,
+                                        <?php echo $rowdetail['price']; ?> บาท ) </b>                                                         
                                     <?php
                                     } else {
                                     ?>
-                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />                                      
+                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
+                                          สินค้า : <b class="user_word"><?php echo $rowdetail['name']; ?>
+                                            ( <?php echo $rowdetail['ns_name']; ?>,
+                                            <?php echo $rowdetail['nt_name']; ?>,
+                                            <?php echo $rowdetail['price']; ?> บาท ) </b>                                      
                                     <?php
                                     }
                                     ?>                                                               
-                                    <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?>
-                                    ( <?php echo $rowdetail['ns_name']; ?>,
-                                    <?php echo $rowdetail['nt_name']; ?>,
-                                    <?php echo $rowdetail['price']; ?> บาท )<br>
+                                     <br>
                                 <?php } ?>
 
                             </td>
@@ -107,6 +113,13 @@
                             </td>
                             <td data-label="ราคารวม">
                                 <b class="user_payment"><?php echo $row['total_price']; ?></b> บาท <br>
+                                <p class="payment_status"><i class="bi bi-credit-card-2-back"></i> สถานะการชำระเงิน : </p>
+                                <?php  if ($row['status_id']== '0') {
+                                        echo '<p class="payment_work"><i class="bi bi-clock-history"></i> กำลังตรวจสอบการชำระเงิน</p>';
+                                    } else if($row['status_id']=='1') {
+                                        echo '<p class="payment_suc"><i class="bi bi-check-lg"></i> ชำระเงินเสร็จสิ้น</p>';
+                                    }
+                                    ?>
                             </td>
 
                             <!-- สถานะ : จองสำเร็จ or กำลังดำเนินการ -->

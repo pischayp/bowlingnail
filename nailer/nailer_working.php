@@ -41,10 +41,11 @@
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table" width="100%">
                         <tr>
-                            <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองลูกค้า</th>
-                            <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
-                            <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวม</th>
-                            <th scope="col" width="20%"><i class="bi bi-circle-fill"></i> สถานะการทำงาน</th>
+                            <th width="1%"></th>
+                            <th scope="col" width="20%"> ข้อมูลการจองลูกค้า</th>
+                            <th scope="col" width="25%"> รายละเอียดสินค้า</th>
+                            <th scope="col" width="10%"> ราคารวม</th>
+                            <th scope="col" width="20%"> สถานะการทำงาน</th>
                         </tr>
                     </thead>
 
@@ -66,6 +67,7 @@
                             
 
                             <tr>
+                                <td></td>
                                 <td data-label="ข้อมูลลูกค้า" class="icon-data">
                                     <i class="bi bi-journal-check"></i> รหัสการจอง : <b> <?php echo $row['book_id']; ?> </b><br>
                                     <i class="bi bi-person"></i> ชื่อลูกค้า : <b> <?php echo $row['username']; ?> </b><br>
@@ -90,21 +92,17 @@
                                if ($rowdetail['ST_ID'] == 82) {
                                    
                                ?>
-                                   <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
-                               
+                                   <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />                     
                                <?php
                                } else {
                                ?>
-                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
-                                  
+                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />                             
                                <?php
                                }
-
-
-                               ?>
-                                        
-                                        
-                                        สินค้า : <b><?php echo $rowdetail['name']; ?></b><br>
+                               ?>                                                                         
+                                        สินค้า : <b><?php echo $rowdetail['name']; ?>
+                                        (<?php echo $rowdetail['ns_name']; ?>, 
+                                        <?php echo $rowdetail['nt_name']; ?>)</b><br>
                                         <!-- <b> รายละเอียด : </b><?php echo $rowdetail['detail']; ?><br> -->
                                     <?php } ?>
                                 </td>

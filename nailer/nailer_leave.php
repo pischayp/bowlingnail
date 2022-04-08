@@ -59,7 +59,6 @@
     </script>
 
 </head>
-
 <body>
 
     <div class="container" id="header_nailer">
@@ -163,6 +162,7 @@
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table">
                         <tr>
+                            <th width="1%"></th>
                             <!-- <th scope="col" width="5%">ลำดับ</th> -->
                             <!-- <th scope="col" width="10%">ชื่อช่างทำเล็บ</th> -->
                             <th scope="col" width="20%">วันที่เริ่มและสิ้นสุดการลา</th>
@@ -182,6 +182,7 @@
                     while ($row_leave = mysqli_fetch_array($result)) { ?>
                         <tbody>
                             <tr>
+                            <td></td>
                             <!-- <td scope="row" data-label="ลำดับ"><?php echo $n ?></td> -->
                             <!-- <td data-label="ชื่อช่างทำเล็บ" class="des"><?php echo $row_leave['nailer_name'] ?></td> -->
                             <td data-label="วันที่เริ่มและสิ้นสุดการลา">

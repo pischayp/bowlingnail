@@ -149,7 +149,7 @@
                 <div class="card">
                     <img src="../img/user_data.png" class="card-img-top">
                     <div class="card-body">
-                    <a href="../admin/show_record.php" class="btn btn-danger">
+                    <a href="../admin/show_booking.php" class="btn btn-danger">
                     <span class="glyphicon glyphicon-trash"></span>จัดการข้อมูลการจอง</a>
                     </div>
                 </div>
@@ -157,23 +157,22 @@
                 <div class="card">
                     <img src="../img/record.png" class="card-img-top">
                     <div class="card-body">
-                    <a href="../admin/show_booking.php" class="btn btn-danger">
+                    <a href="../admin/show_record.php" class="btn btn-danger">
                     <span class="glyphicon glyphicon-trash"></span>ประวัติการจองของลูกค้า</a>
                     </div>
                 </div>
                 &emsp;
                 <div class="card">
-                    <img src="../img/เอฟโสด.png" class="card-img-top">
+                    <img src="../img/img-dashboard.png" class="card-img-top">
                     <div class="card-body">
                     <a href="../admin/dashboard.php" class="btn btn-danger">
-                    <span class="glyphicon glyphicon-trash"></span>DashBoard</a>
+                    <span class="glyphicon glyphicon-trash"></span>รายงานสรุปผล</a>
                     </div>
                 </div>
                 </div>
             </div>
             <div class="col"></div>
-        </div>
-        
+        </div>  
     </div><br><br>
 
        

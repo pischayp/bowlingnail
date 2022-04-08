@@ -39,9 +39,7 @@
                     $('#leave_end').prop('disabled', true);
                     $('.leave_date').prop('disabled', false);
                     $('#leave_date').prop('disabled', false);
-
                 }
-
             });
         });
     </script>
@@ -71,13 +69,9 @@
             <div class="card mb-3" width="50%">
                 <div class="row g-0" id="profile_nailer">
 
-                    <div class="col-1"></div>
-                    <div class="col-md-4"><br>
-                        <img src="../img/nail_uplode.png" width="250" height="250" />
-                        <br><br>
-                    </div>
+                    <div class="col-2"></div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card-body">
                             <br>
                             <form action="../conn/conn_cusfile.php" enctype="multipart/form-data" method="POST">
@@ -100,14 +94,19 @@
                                             <option value="2">ลายเล็บเท้า</option>
                                         </select>
                                     </div><br>
-
+                                    <div class="col-5">
+                                        <label>รายละเอียดเพิ่มเติม : </label><br>
+                                    </div>
+                                    <div class="col-7">
+                                        <textarea name="file_detail" id="" cols="25" rows="4"></textarea>
+                                    </div><br>
                                    
 
                                     <div class="col-5">
-                                        <label>ราคาที่ต้องมัดจำ : 129฿</label><br>
+                                        <label>ราคาที่ต้องมัดจำ : </label><br>
                                     </div>
                                     <div class="col-7">
-
+                                        <b>129 </b>บาท
                                     </div><br>
                                 </div>
                                 <br>
@@ -117,16 +116,14 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-1"></div>
-
-
+                    <div class="col-2"></div>
                 </div>
             </div>
         </div>
         <div class="col-2"></div>
     </div><br>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-1"></div>
         <div class="col-10" id="btn-choose-nailer">
             <p><i class="bi bi-chat-text"></i>&nbsp;ลายเล็บที่ทางร้านแนะนำ / ยอดฮิต</p>
@@ -134,7 +131,7 @@
 
         </div>
         <div class="col-1 "></div>
-    </div><br>
+    </div><br> -->
 
     <div>
         <?php include('../footer.php'); ?>

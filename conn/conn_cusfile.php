@@ -4,8 +4,7 @@ session_start();
 $cus_id = $_SESSION['cus_id'];
 $nt_id = $_POST['nt_id'];
 $file_detail = $_POST['file_detail'];
-$stId = '82';
-
+$ST_ID = '82';
 
 
 $nail_picture = pathinfo(basename($_FILES['cus_file']['name']), PATHINFO_EXTENSION);
@@ -41,15 +40,15 @@ if ($numrow < 1) {
     $rowselect2 = mysqli_fetch_array($resultselect2);
     $book_id = $rowselect2['book_id'];
     // $insrtDetail = "INSERT INTO book_nail_detail(book_id,S_ID,ST_ID,cus_price,date_add) VALUES ($book_id,$S_ID,$st_id,$price,'$date')";
-    mysqli_query($conn, "insert into book_nail_detail ( nt_id, file_detail,book_id, cus_file) 
- values ('$nt_id', '$file_detail','$book_id','$picup')");
+    mysqli_query($conn, "insert into book_nail_detail ( nt_id, file_detail,book_id, cus_file, ST_ID) 
+ values ('$nt_id', '$file_detail','$book_id','$picup','$ST_ID')");
 } else {
 
     $rowselect = mysqli_fetch_array($resultselect);
     $book_id = $rowselect['book_id'];
     // $insrtDetail = "INSERT INTO book_nail_detail(book_id,S_ID,ST_ID,cus_price,date_add) VALUES ($book_id,$S_ID,$st_id,$price,'$date')";
     mysqli_query($conn, "insert into book_nail_detail ( nt_id, file_detail,book_id, cus_file,ST_ID) 
-    values ('$nt_id', '$file_detail','$book_id','$picup','$stId')");
+    values ('$nt_id', '$file_detail','$book_id','$picup','$ST_ID')");
 }
 
 header('location:../header/header_uplode.php');

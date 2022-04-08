@@ -66,10 +66,11 @@
 
                 <table class="table table-striped table-hover" width="100%">
                     <thead href="#payment_model.php">
-                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองของลูกค้า</th>
-                        <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
-                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคาทั้งหมด</th>
-                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
+                        <th width="1%"></th>
+                        <th scope="col" width="15%"> ข้อมูลการจองของลูกค้า</th>
+                        <th scope="col" width="35%"> รายละเอียดสินค้า</th>
+                        <th scope="col" width="10%"> ราคาทั้งหมด</th>
+                        <th scope="col" width="10%"> ช่างทำเล็บ</th>
                         <!-- ยังติดเออเร่อ -->
                     </thead>
 
@@ -81,13 +82,14 @@
                             INNER JOIN book_nail_detail on book_nail_detail.book_id=booking.book_id
                             INNER JOIN nailer on book_nail_detail.nailer_id=nailer.nailer_id
                             INNER JOIN customer ON booking.cus_id=customer.cus_id
-                            WHERE booking.book_id
+                            WHERE booking.book_id and book_status = '1'
                             group by booking.book_id
                             Order by booking.book_id DESC ") ;
                             while($row=mysqli_fetch_array($query)){
                                 $book_id = $row['book_id'];   
                             ?>
                             <tr>
+                                <td></td>
                                 <td data-label="รายละเอียดการจอง">
                                     <i class="bi bi-journal-check"></i> รหัสการจอง : <b><?php echo $row['book_id']; ?></b><br>
                                     <i class="bi bi-person"></i> ชื่อลูกค้า : <b><?php echo $row['username']; ?></b><br>
@@ -109,19 +111,20 @@
                                 <?php                             
                                if ($rowdetail['ST_ID'] == 82) {                                  
                                ?>
-                                   <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />                              
+                                   <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
+                                   สินค้า : <b><?php echo $rowdetail['file_detail']; ?> 
+                                        (<?php echo $rowdetail['name']; ?>, 
+                                        <?php echo $rowdetail['ns_name']; ?>)</b><br>                                  
                                <?php
                                } else {
                                ?>
-                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />                                
+                                     <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
+                                     สินค้า : <b><?php echo $rowdetail['name']; ?> 
+                                        (<?php echo $rowdetail['ns_name']; ?>, 
+                                        <?php echo $rowdetail['nt_name']; ?>)</b><br>                               
                                <?php
                                }
                                ?>                                                     
-                                    <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
-                                        (<?php echo $rowdetail['ns_name']; ?>,                                         
-                                        <?php echo $rowdetail['price']; ?> บาท) </b>
-                                        <br>
-
                                     <?php } ?>
                                 </td>
 

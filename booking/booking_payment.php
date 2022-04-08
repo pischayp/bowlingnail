@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css.css">
     <link rel="stylesheet" href="../css_user.css">
     <link rel="stylesheet" href="../table.css">
+    <link rel="stylesheet" href="../table_card.css">
     <link rel="stylesheet" href="../css_breadcrumb.css">
     <link rel="icon" type="image/x-icon" href="../img/bowling-logo.svg" />
     <!-- Google font -->
@@ -105,19 +106,18 @@
                     <hr>
                 </div>
             
-
             <div class="col-8">
                 <div class="card-body" style="margin-top:-20px;">
                     <table class="table table-striped table-hover" style="text-align:center;  width:100%; background-color:white;">
                         <thead>
-                            <th width="10%">รูปภาพ</th>
-                            <th width="15%">ชื่อบริการ</th>
+                            <th scope="col" width="10%">รูปภาพ</th>
+                            <th scope="col" width="15%">ชื่อบริการ</th>
                             <!-- <th width="20%">รายละเอียด</th> -->
-                            <th width="15%">รูปแบบ</th>
-                            <th width="15%">วันที่จอง</th>
-                            <th width="15%">เวลาที่จอง</th>
-                            <th width="15%">ช่างทำเล็บ</th>
-                            <th width="5%">ราคา</th>
+                            <th scope="col" width="15%">รูปแบบ</th>
+                            <th scope="col" width="15%">วันที่จอง</th>
+                            <th scope="col" width="15%">เวลาที่จอง</th>
+                            <th scope="col" width="15%">ช่างทำเล็บ</th>
+                            <th scope="col" width="10%">ราคา</th>
                         </thead>
                         <tbody>
                             <?php
@@ -138,27 +138,27 @@
                             while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                 <tr>
                                 <?php
-                                if ($rowdetail['ST_ID'] == '82') {
+                                if ($rowdetail['ST_ID'] == 82) {
                                 ?>
-                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['cus_file'] ?>"></th>
+                                    <td data-label="รูปภาพที่อัปโหลด">
+                                        <img width=50 src="<?php echo $rowdetail['cus_file'] ?>">
+                                    </td>
                                     <?php
                                 } else {
-                                    ?>
-
-                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"></th>
+                                ?>
+                                    <td data-label="รูปภาพ">
+                                        <img width=50 src="<?php echo $rowdetail['file'] ?>">
+                                    </td>
                                     <?php
                                 }
-
-
-                                    ?>
-                                    <!-- <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"> -->
-                                    <td width="10%"><?php echo $rowdetail['name'] ?></td>
-                                    <!-- <td width="10%"><?php echo $rowdetail['detail'] ?></td> -->
-                                    <td width="10%"><?php echo $rowdetail['ns_name'] ?></td>
-                                    <td width="10%"><?php echo $rowdetail['date_add'] ?></td>
-                                    <td width="20%"><?php echo $rowdetail['timeslots'] ?></td>
-                                    <td width="10%"><?php echo $rowdetail['nailer_name'] ?></td>
-                                    <td width="10%"><?php echo $rowdetail['price'] ?></td>
+                                ?>
+                                    <td data-label="ชื่อสินค้า"><?php echo $rowdetail['name'] ?></td>
+                                    <!-- <td><?php echo $rowdetail['detail'] ?></td> -->
+                                    <td data-label="ประเภทลายเล็บ"><?php echo $rowdetail['ns_name'] ?></td>
+                                    <td data-label="รูปแบบลายเล็บ"><?php echo $rowdetail['date_add'] ?></td>
+                                    <td data-label="เวลาที่จอง"><?php echo $rowdetail['timeslots'] ?></td>
+                                    <td data-label="ช่างทำเล็บ"><?php echo $rowdetail['nailer_name'] ?></td>
+                                    <td data-label="ราคาสินค้า"><?php echo $rowdetail['price'] ?></td>
                                 </tr>
                             <?php
                             }
@@ -196,7 +196,7 @@
         
             <div class="col-4">
             <form class="imgForm" action="../conn/conn_payment.php?book_id=<?php echo $book_id ?>&price=<?php echo $sumprice?>" 
-     method="post" enctype="multipart/form-data">
+                method="post" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <div class="content">

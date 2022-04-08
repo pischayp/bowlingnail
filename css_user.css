@@ -220,6 +220,18 @@
 .user_word i{
     font-size: 16px;
 }
+.payment_status{
+    font-size: 14px;
+    margin-bottom: -5px;
+}
+.payment_work{
+    color: #FF9900;
+    font-size: 14px;
+}
+.payment_suc{
+    color: green;
+    font-size: 14px;
+}
 
 /* #success i .bi .bi-check-circle-fill::before{
     width: 500px !important;

@@ -65,11 +65,12 @@
 
                 <table class="table table-striped table-hover" width="100%">
                     <thead href="#payment_model.php">
-                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> ข้อมูลการจองของลูกค้า</th>
-                        <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> รายละเอียดสินค้า</th>
-                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวม</th>
-                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> รูปแบบการชำระเงิน</th>
-                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> สถานะการชำระเงิน</th>
+                        <th width="1%"></th>
+                        <th scope="col" width="15%"> ข้อมูลการจองของลูกค้า</th>
+                        <th scope="col" width="30%"> รายละเอียดสินค้า</th>
+                        <th scope="col" width="7%"> ราคารวม</th>
+                        <th scope="col" width="13%"> รูปแบบการชำระเงิน</th>
+                        <th scope="col" width="11%"> สถานะการชำระเงิน</th>
                     </thead>
 
                     <span>
@@ -77,22 +78,26 @@
                             <?php
                             include('../conn/conn.php');
                             $query=mysqli_query($conn,"SELECT * from booking 
-                            join customer on (customer.cus_id=booking.cus_id)
-                            WHERE booking.book_id 
+                            inner join customer on (customer.cus_id=booking.cus_id)
+                            inner join book_nail_detail on (book_nail_detail.book_id=booking.book_id)
+                            inner join nailer on (book_nail_detail.nailer_id=nailer.nailer_id)
+                            WHERE booking.book_id and book_status = '1'  
                             group by booking.book_id
-                            Order by book_id DESC ") ;
+                            Order by booking.book_id DESC ") ;
                             while($row=mysqli_fetch_array($query)){
                             
                                 $book_id = $row['book_id'];   
                             ?>
                             <tr>
+                                <td></td>
                                 <!-- <td data-label="รหัส"><?php echo $row['book_id']; ?></td>
                                 <td data-label="ชื่อลูกค้า"><?php echo $row['username']; ?></td> -->
                                 <td data-label="รายละเอียดการจอง">
                                     <i class="bi bi-journal-check"></i> รหัสการจอง : <b><?php echo $row['book_id']; ?></b><br>
                                     <i class="bi bi-person"></i> ชื่อลูกค้า : <b><?php echo $row['username']; ?></b><br>
                                     <i class="bi bi-calendar-check"></i> วันที่จอง : <b><?php echo $row['book_date']; ?></b><br>
-                                    <i class="bi bi-alarm"></i> เวลาที่จอง : <b><?php echo $row['timeslots']; ?></b>
+                                    <i class="bi bi-alarm"></i> เวลาที่จอง : <b><?php echo $row['timeslots']; ?></b><br>
+                                    <i class="bi bi-person"></i> ช่างทำเล็บ : <b><?php echo $row['nailer_name']; ?></b>
                                 </td>
 
                                 <td data-label="รายละเอียดสินค้า">
@@ -106,31 +111,29 @@
                                     $resultdetail = mysqli_query($conn, $sqldetail);
                                     while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                     
-                                <?php
-                               
-                               if ($rowdetail['ST_ID'] == 82) {
-                                   
+                                <?php                             
+                               if ($rowdetail['ST_ID'] == 82) {                                  
                                ?>
                                    <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
-                               
+                                   สินค้า : <b><?php echo $rowdetail['file_detail']; ?> 
+                                        (<?php echo $rowdetail['name']; ?>, 
+                                        <?php echo $rowdetail['ns_name']; ?>)</b><br>               
                                <?php
                                } else {
                                ?>
                                      <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
-                                  
+                                     สินค้า : <b><?php echo $rowdetail['name']; ?> 
+                                        (<?php echo $rowdetail['ns_name']; ?>, 
+                                        <?php echo $rowdetail['nt_name']; ?>)</b><br>                   
                                <?php
                                }
-
-
                                ?>
-                             
-                                    <b> สินค้า : </b><?php echo $rowdetail['name']; ?> 
-                                        (<?php echo $rowdetail['ns_name']; ?>, 
-                                        <?php echo $rowdetail['nt_name']; ?>)<br>
+                                    
                                     <?php } ?>
                                 </td>
-
-                                <td data-label="ราคารวม"><b><?php echo $row['total_price']; ?></b> บาท</td>
+                                <td data-label="ราคารวม">
+                                    <b><?php echo $row['total_price']; ?></b> บาท
+                                </td>
     
                                 <td data-label="รูปแบบการชำระเงิน">
                                     <?php if ($row['payment_status'] == '0') {
@@ -138,15 +141,13 @@
                                     } else { ?>
                                     <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" width="80%" /> 
                                     <?php } ?>
-                                    <!-- <img class="img-responsive img-thumbnail" src="<?php echo $row['slip'] ?>" /> -->
+                                    
                                 </td>
                                 <td data-label="สถานะ">
-                                    <?php if($row['payment_status']=='0') {
-                                ?>
-
-                                    <a href="#payment<?php echo $row['book_id']; ?>" class="btn btn-primary"
-                                        data-toggle="modal"></i> ยืนยันการชำระเงิน</a>
-                                    <?php include('../model/payment_model.php'); ?>
+                                    <?php if((($row['payment_status']=='0') || ($row['payment_status']=='1')) && ($row['status_id']=='0')) {
+                                        ?>
+                                        <a href="../conn/conn_payment_admin.php?book_id=<?php echo $row["book_id"] ?>&status_id=1" 
+                                            class="btn btn-primary"></i> ยืนยันการชำระเงิน</a>
                                     <?php
                                 }else if($row['status_id']=='1') {
                                 ?>

@@ -9,6 +9,7 @@
     <title>Bowling Nail & Spa. | ร้านทำเล็บและสปา</title>
     <link rel="stylesheet" href="../css.css">
     <link rel="stylesheet" href="../table.css">
+    <link rel="stylesheet" href="../table_card.css">
     <link rel="stylesheet" href="../css_user.css">
     <link rel="stylesheet" href="../css_breadcrumb.css">
     <link rel="icon" type="image/x-icon" href="../img/bowling-logo.svg" />
@@ -83,12 +84,12 @@
         <div class="col-lg-10">
             <table class="table table-striped table-hover" id="table_booking">
                 <thead>
-                    <th width="10%">รูปภาพ </th>
-                    <th width="10%">ชื่อบริการ</th>
-                    <th width="10%">รายละเอียด</th>
-                    <th width="10%">รูปแบบ</th>
-                    <th width="10%">ราคา</th>
-                    <th width="5%"></th>
+                    <th scope="col" width="10%">รูปภาพ </th>
+                    <th scope="col" width="10%">ชื่อบริการ</th>
+                    <th scope="col" width="10%">รายละเอียด</th>
+                    <th scope="col" width="10%">รูปแบบ</th>
+                    <th scope="col" width="10%">ราคา</th>
+                    <th scope="col" width="5%"></th>
                 </thead>
                 <tbody>
                     <?php
@@ -102,35 +103,27 @@
                     if ($numrow > 0) {
                         $_SESSION['book_id'] = $rowselect['book_id'];
 
-                        $sqldetail = "SELECT * FROM book_nail_detail INNER join service_item on service_item.ST_ID = book_nail_detail.ST_ID 
-                                        INNER join service_type on service_item.S_ID = service_type.S_ID
-                                        INNER join nail_set on service_item.ns_id = nail_set.ns_id 
-                                        WHERE  book_nail_detail.book_id = $book_id  ORDER BY book_nail_detail.bd_id DESC ";
+                        $sqldetail = "SELECT * FROM book_nail_detail 
+                                    INNER join service_item on service_item.ST_ID = book_nail_detail.ST_ID 
+                                    INNER join service_type on service_item.S_ID = service_type.S_ID
+                                    INNER join nail_set on service_item.ns_id = nail_set.ns_id 
+                                    WHERE  book_nail_detail.book_id = $book_id
+                                    ORDER BY book_nail_detail.bd_id DESC ";
                         $resultdetail = mysqli_query($conn, $sqldetail);
-
                         while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                             <tr>
                                 <?php
-                                if ($rowdetail['ST_ID'] == '82') {
+                                if ($rowdetail['ST_ID'] == 82) {
                                 ?>
-                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['cus_file'] ?>"></th>
-                                    <?php
-                                } else {
-                                    ?>
+                                    <td data-label="รูปภาพที่อัปโหลด" width="10%">
+                                        <img width=50 src="<?php echo $rowdetail['cus_file'] ?>">
+                                    </td>
+                                    <td data-label="ชื่อสินค้า" width="10%"><?php echo $rowdetail['name'] ?></td>
+                                    <td data-label="รายละเอียด" width="10%"><?php echo $rowdetail['file_detail'] ?></td>
 
-                                    <td width="10%"><img width=50 src="<?php echo $rowdetail['file'] ?>"></th>
-                                    <?php
-                                }
-
-
-                                    ?>
-
-                                    <td width="10%"><?php echo $rowdetail['name'] ?></td>
-                                    <td width="10%"><?php echo $rowdetail['S_name'] ?></td>
-
-                                    <td width="10%"><?php echo $rowdetail['ns_name'] ?></td>
-                                    <td width="10%"><?php echo $rowdetail['price'] ?></td>
-                                    <td style="width:8%;">
+                                    <td data-label="รูปแบบลายเล็บ" width="10%"><?php echo $rowdetail['ns_name'] ?></td>
+                                    <td data-label="ราคา" width="10%"><?php echo $rowdetail['price'] ?></td>
+                                    <td data-label="ลบบริการ" style="width:8%;">
                                         <span>
                                             <a href="#delbook<?php echo $rowdetail['bd_id']; ?>" data-toggle="modal" class="btn btn-danger">
                                                 <span class="glyphicon glyphicon-trash"></span>ลบ </a>
@@ -138,6 +131,29 @@
 
                                         </span>
                                     </td>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <td data-label="รูปภาพ" width="10%">
+                                        <img width=50 src="<?php echo $rowdetail['file'] ?>">
+                                    </td>
+                                    <td data-label="ชื่อสินค้า" width="10%"><?php echo $rowdetail['name'] ?></td>
+                                    <td data-label="ประเภทลายเล็บ" width="10%"><?php echo $rowdetail['S_name'] ?></td>
+
+                                    <td data-label="รูปแบบลายเล็บ" width="10%"><?php echo $rowdetail['ns_name'] ?></td>
+                                    <td data-label="ราคา" width="10%"><?php echo $rowdetail['price'] ?></td>
+                                    <td data-label="ลบบริการ" style="width:8%;">
+                                        <span>
+                                            <a href="#delbook<?php echo $rowdetail['bd_id']; ?>" data-toggle="modal" class="btn btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span>ลบ </a>
+                                            <?php include('../model/booking_model.php'); ?>
+
+                                        </span>
+                                    </td>
+                                    <?php
+                                }
+                                    ?>
+                                    
                             </tr>
                     <?php
                         }

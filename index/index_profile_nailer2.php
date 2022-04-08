@@ -255,7 +255,7 @@
                                 INNER JOIN booking ON booking.book_id=book_nail_detail.book_id 
                                 INNER JOIN customer ON customer.cus_id=booking.cus_id 
                                 where nailer.nailer_id = 2 AND comment!=''");
-
+                                
                                 while ($row = mysqli_fetch_array($query)) {
                                 ?>
                                     <td width="10%"><img class="resize" src="<?php echo $row['review_picture']; ?>"></td>

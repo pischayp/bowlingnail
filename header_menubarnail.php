@@ -40,6 +40,8 @@
 </head>
 <body>
 <header>
+
+<div class="container">
     <nav class="navbar navbar-expand-lg navbar-light color-dark shadow-sm fixed-top rounded" id="menu">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
             aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,8 +75,8 @@
                 ลายเล็บเท้า
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#../header/headerf_p.php">แบบลายเล็บมือ (ต่อนิ้ว)</a>
-                    <a class="dropdown-item" href="#../header/headerf_nailset.php">แบบลายเล็บมือ (เซต)</a>
+                    <a class="dropdown-item" href="../header/headerf_p.php">แบบลายเล็บเท้า (ต่อนิ้ว)</a>
+                    <a class="dropdown-item" href="../header/headerf_pset.php">แบบลายเล็บเท้า (เซต)</a>
                     <a class="dropdown-item" href="../header/header_uplode.php">อัปโหลดลายเล็บที่ต้องการ</a>
                 </div>
             </li>
@@ -117,6 +119,8 @@
             </ul>
         </div>
     </nav>
+</div>
+
 </header>  
 </body>
 </html>

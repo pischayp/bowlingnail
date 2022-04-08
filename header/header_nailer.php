@@ -299,7 +299,7 @@
                                     </p>
                                 </div><br>
                                 <div class="btn-profile">
-                                    <a href="#nailerport1<?php echo $row['nailer_id'] ?>" data-toggle="modal">
+                                    <a href="#nailerport2<?php echo $row['nailer_id'] ?>" data-toggle="modal">
                                         <i class="bi bi-journal-medical"></i>&nbsp;คลิ๊กเพื่อดูผลงานทั้งหมด</a>
                                     <?php include('../model/modal_nailer_port.php'); ?>
                                 </div><br>
@@ -310,125 +310,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="col-5" id="index_nailer">
-                <div class="card mb-3" width="50%">
-                    <div class="row g-0" id="profile_nailer">
-
-                        <div class="col-md-6 text-center"><br><br>
-                            <h1 class="text-warning">
-                                <b><span id="average_rating">0.0</span> / 5</b>
-                            </h1>
-                            <div class="mb-3">
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                                <i class="fas fa-star star-light mr-1 main_star"></i>
-                            </div>
-                            <h3><span id="total_review">0</span> รีวิว (Review)</h3><br>
-
-                        </div>
-                        <div class="col-md-5 text-center"><br>
-                            <p>
-                            <div class="progress-label-left"><b>5</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_five_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="five_star_progress"></div>
-                            </div>
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>4</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_four_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="four_star_progress"></div>
-                            </div>
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>3</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_three_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="three_star_progress"></div>
-                            </div>
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>2</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_two_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="two_star_progress"></div>
-                            </div>
-                            </p>
-                            <p>
-                            <div class="progress-label-left"><b>1</b> <i class="fas fa-star text-warning"></i></div>
-
-                            <div class="progress-label-right">(<span id="total_one_star_review">0</span>)</div>
-                            <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="one_star_progress"></div>
-                            </div>
-                            </p><br>
-                            <span>
-                                <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">
-                                    <button type="button" name="add_review" id="add_review" >
-                                    <i class="bi bi-star-fill"></i> ให้คะแนน (Reivew)
-                                    </button>
-                                </a>
-                                <?php include('../model/modal_review.php'); ?>
-                            </span><br> -->
-                        <!-- </div>
-                    </div>
-                </div>
-            </div>  -->
-
             <div class="col-1"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8" id="btn-choose-nailer">
-                <i class="bi bi-chat-text"></i>&nbsp;ผลงานของช่างทำเล็บ
-                <hr>
-
-                <!-- <div class="btn-review">
-                    <a href="#add_data" data-toggle="modal">
-                        <i class="bi bi-chat-text"></i>&nbsp;คลิ๊กเพื่อดูรีวิวทั้งหมด</a>
-                </div><br> -->
-
-                <div class="card" id="card-review">
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                        <table class="table table-striped table-hover" width="100%">
-
-                            <tbody id="result">
-                                <?php
-                                include('../conn/conn.php');
-                                $query = mysqli_query($conn, "SELECT * from book_nail_detail
-                                INNER JOIN nailer ON nailer.nailer_id=book_nail_detail.nailer_id 
-                                INNER JOIN booking ON booking.book_id=book_nail_detail.book_id 
-                                INNER JOIN customer ON customer.cus_id=booking.cus_id 
-                                where nailer.nailer_id = 1 AND comment!=''");
-
-                                while ($row = mysqli_fetch_array($query)) {
-                                ?>
-                                    <td width="10%"><img class="resize" src="<?php echo $row['review_picture']; ?>"></td>
-                                    <td width="30%"><?php echo $row['comment']; ?></td>
-                                    <td width="20%"><?php echo $row['star_level']; ?></td>
-                                    <td width="15%">
-                                        <h6 style="color: gray;">วันที่รีวิว : <?php echo $row['date__review']; ?></h6>
-                                        <h6 style="color: gray;">ผู้ใช้งาน : <?php echo $row['username']; ?></h6>
-                                    </td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2"></div>
         </div>
     </div>
 

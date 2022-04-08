@@ -63,9 +63,10 @@
                 <hr>
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table">
+                        <th width="2%"></th>
                         <th scope="col" width="15%">รหัสสมาชิก</th>
-                        <th scope="col" width="15%">โปรไฟล์</th> 
-                        <th scope="col" width="20%">ชื่อช่างทำเล็บ</th>
+                        <th scope="col" width="10%">โปรไฟล์</th> 
+                        <th scope="col" width="15%">ชื่อช่างทำเล็บ</th>
                         <th scope="col" width="20%">ชื่อ</th>
                         <th scope="col" width="20%">นามสกุล</th>
                         <th scope="col" width="20%">เบอร์โทรศัพท์</th>
@@ -82,6 +83,7 @@
                         ?>
                         <tbody class="header-table">
                             <tr>
+                                <td></td>
                                 <td data-label="รหัสสมาชิก"><?php echo $row['nailer_id']; ?></td>
                                 <td data-label="โปรไฟล์">
                                     <img src="<?php echo $row["nailer_picture"] ?>" width="100%" />
@@ -119,6 +121,7 @@
                 <hr>
                 <table class="table table-striped table-hover w-100">
                     <thead class="header-table">
+                        <th width="1%"></th>
                         <th scope="col" width="5%">ลำดับ</th>
                         <th scope="col" width="10%">ชื่อช่างทำเล็บ</th>
                         <th scope="col" width="15%">วันที่เริ่มการลา</th>
@@ -142,6 +145,7 @@
                             ?>
                             <tbody class="header-table">
                             <tr>
+                                <td></td>
                                 <td data-label="ลำดับ"><?php echo $n ?></td>
                                 <td data-label="ชื่อช่างทำเล็บ"><?php echo $row['nailer_name']; ?></td>
                             

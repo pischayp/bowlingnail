@@ -64,9 +64,9 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/show_user.php">จัดการข้อมูลสมาชิก</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/show_nailer.php">จัดการข้อมูลช่างทำเล็บ</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/editnail_hand_one.php">จัดการข้อมูลการบริการ</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/show_record.php">จัดการข้อมูลการจอง</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/show_booking.php">ประวัติการจองของลูกค้า</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/dashboard.php">DashBoard</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/show_booking.php">จัดการข้อมูลการจอง</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/show_record.php">ประวัติการจองของลูกค้า</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../admin/dashboard.php">รายงานสรุปผล</a></li>
                 <li class="nav-item">
                     <a class="nav-link" href="../index.php">ออกจากระบบ</a>
                 </li>

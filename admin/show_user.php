@@ -44,7 +44,8 @@
             <div class="col-md-4"></div>
             <div class="col-md-4" id="search">
                 <form method="POST">
-                    <input class="form-control" name="txtKeyword" type="text" id="txtKeyword" placeholder="กรุณากรอกรหัสสมาชิก" value="<?php echo $Key_id; ?>">
+                    <input class="form-control" name="txtKeyword" type="text" id="txtKeyword" placeholder="กรุณากรอกชื่อสมาชิก" 
+                        value="<?php echo $Key_id; ?>">
                     <!-- ปักไว้ กลับมาแก้ไขเป็นค้นหา username -->
                     <button type="submit" value="ค้นหา" class="btn btn-info">ค้นหา</button>
                 </form>
@@ -58,6 +59,7 @@
             <div class="table-wrapper-scroll-y me-custom-scrollbar">
                 <table class="table table-striped table-hover">
                     <thead>
+                        <th width="1%"></th>
                         <!-- <th scope="col" width="5%">รหัสสมาชิก</th> -->
                         <th scope="col" width="5%">โปรไฟล์</th>
                         <th scope="col" width="7%">ชื่อผู้ใช้งาน</th>
@@ -73,10 +75,11 @@
                             include('../conn/conn.php');
                             $n = 1;
                             $query = mysqli_query($conn, "SELECT * from customer 
-                        WHERE typeuser_id = 2 and cus_id LIKE '%" . $Key_id . "%'");
+                        WHERE typeuser_id = 2 and username LIKE '%" . $Key_id . "%'");
                             while ($row = mysqli_fetch_array($query)) {
                             ?>
                                 <tr>
+                                    <td></td>
                                     <!-- <td data-label="รหัสสมาชิก"><?php echo $row['cus_id']; ?></td> -->
                                     <td data-label="โปรไฟล์">
                                         <img src="<?php echo $row["file"] ?>" class="rounded-circle" />
@@ -103,7 +106,7 @@
             </div>
             </div>
             <div class="col-md-1"></div>
-        </div>
+        </div><br><br>
 
 </body>
 

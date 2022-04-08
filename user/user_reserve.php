@@ -49,16 +49,12 @@
             <div div class="col-md-12">
                 <table class="table table-striped table-hover">
                     <thead>
-                        <!-- <th width="10%"><i class="bi bi-circle-fill"></i> รูปสินค้า</th> -->
-                        <th scope="col" width="25%"><i class="bi bi-circle-fill"></i> ข้อมูล และรายละเอียดบริการ</th>
-                        <!-- <th width="20%">รายละเอียด</th> -->
-                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ช่างทำเล็บ</th>
-                        <th scope="col" width="15%"><i class="bi bi-circle-fill"></i> วันและเวลาที่จอง</th>
-                        <th scope="col" width="10%"><i class="bi bi-circle-fill"></i> ราคารวมทั้งหมด</th>
-                        <!-- <th scope="col" width="10%"><i class="bi bi-chat-dots"></i> รีวิวที่นี่</th> -->
-        
+                        <th width="1%"></th>
+                        <th scope="col" width="30%"> ข้อมูล และรายละเอียดบริการ</th>
+                        <th scope="col" width="7%"> ช่างทำเล็บ</th>
+                        <th scope="col" width="10%"> วันและเวลาที่จอง</th>
+                        <th scope="col" width="10%"> ราคารวมทั้งหมด</th>
                     </thead>
-
                     <tbody>
                         
                         <?php
@@ -76,7 +72,7 @@
                             $book_id = $row['book_id'];               
                         ?>
                         <tr>
-                            
+                            <td></td>
                             <td data-label="รายละเอียดสินค้า">
                             <?php
                                 $sqldetail = "SELECT * FROM book_nail_detail
@@ -88,50 +84,36 @@
                                 $resultdetail = mysqli_query($conn, $sqldetail);
                                 while ($rowdetail = mysqli_fetch_array($resultdetail)) { ?>
                                 
-                                <?php
-                               
-                                    if ($rowdetail['ST_ID'] == 82) {
-                                        
+                                <?php                      
+                                    if ($rowdetail['ST_ID'] == 82) {                                
                                     ?>
-                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" />
-                                    
+                                        <img class="img-responsive" src="<?php echo $rowdetail['cus_file'] ?>" width="70px" /> 
+                                        สินค้า : <b class="user_word"><?php echo $rowdetail['name']; ?>
+                                        ( <?php echo $rowdetail['ns_name']; ?>,
+                                        <?php echo $rowdetail['file_detail']; ?>,
+                                        <?php echo $rowdetail['price']; ?> บาท ) </b><br>                          
                                     <?php
                                     } else {
                                     ?>
-                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />
-                                       
+                                          <img class="img-responsive" src="<?php echo $rowdetail['file'] ?>" width="70px" />       
+                                          สินค้า : <b class="user_word"><?php echo $rowdetail['name']; ?>
+                                            ( <?php echo $rowdetail['ns_name']; ?>,
+                                            <?php echo $rowdetail['nt_name']; ?>,
+                                            <?php echo $rowdetail['price']; ?> บาท ) </b><br>                             
                                     <?php
                                     }
-
-
-                                    ?>
-                                  
-                                
-                                
-                                <b class="user_word"> สินค้า : </b><?php echo $rowdetail['name']; ?> 
-                                    (<?php echo $rowdetail['ns_name']; ?>, 
-                                    <?php echo $rowdetail['nt_name']; ?>)<br>
+                                    ?>                                                                                            
                                 <?php } ?>
                             </td>
                             <td data-label="ช่างทำเล็บ">
-                                <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['nailer_name']; ?></b>
+                                <b class="user_word"><i class="bi bi-person"></i> <?php echo $row['nailer_name']; ?></b>
                             </td>
                             <td data-label="วันและเวลาที่จอง">
                                 <b class="user_word"><i class="bi bi-calendar2-week"></i> <?php echo $row['book_date']; ?></b><br>
-                                <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>
-                                
+                                <b class="user_word"><i class="bi bi-clock"></i> <?php echo $row['timeslots']; ?></b>                             
                             </td>
                             <td data-label="ราคารวมทั้งหมด">
-                            <!-- <?php echo $row['book_id']; ?> -->
-                                <b class="user_word"><?php echo $row['total_price']; ?></b> บาท</td>
-                            <!-- <td data-label="รีวิว">
-                            <span>
-                                <a href="#review1<?php echo $row['bd_id'] ?>" data-toggle="modal" class="btn btn-outline-warning">                                   
-                                    <i class="bi bi-star-fill"></i> ให้คะแนน                                   
-                                </a>
-                                <?php include('../model/modal_review.php'); ?>
-                            </span>                                
-                            </td> -->
+                                <b class="user_word"><?php echo $row['total_price']; ?></b> บาท</td>                         
                         </tr>
                         <?php
                         }                
